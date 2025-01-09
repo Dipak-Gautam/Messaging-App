@@ -18,9 +18,18 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  conversations: {
-    type: [String],
-  },
+  conversations: [
+    {
+      id: {
+        type: String,
+        required: true,
+      },
+      name: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
   requests: [
     {
       id: {

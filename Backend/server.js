@@ -18,6 +18,8 @@ app.use("/user", userRoutes);
 const conversationRoutes = require("./routes/Conversation");
 const { jwtAuthMiddleWare } = require("./jwt");
 app.use("/conv", jwtAuthMiddleWare, conversationRoutes);
+const requestRoute = require("./routes/requestRoutes");
+app.use("/request", jwtAuthMiddleWare, requestRoute);
 
 app.listen(port, () => {
   console.log("listening on port 3000");
