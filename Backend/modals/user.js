@@ -60,6 +60,9 @@ const userSchema = new mongoose.Schema({
       },
     },
   ],
+  token: {
+    type: String,
+  },
 });
 
 userSchema.pre("save", async function (next) {

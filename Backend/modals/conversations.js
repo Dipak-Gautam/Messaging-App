@@ -4,6 +4,9 @@ const conversationSchema = new mongoose.Schema({
   name: {
     type: String,
   },
+  conversationType: {
+    type: String,
+  },
   messages: [
     {
       type: {
@@ -11,7 +14,7 @@ const conversationSchema = new mongoose.Schema({
       },
       status: {
         type: String,
-        enum: ["hidden" | "visible"],
+        enum: ["hidden", "visible"],
         default: "visible",
       },
       sender: {
