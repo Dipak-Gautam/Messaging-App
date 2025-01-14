@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import darkTheme, { toggleDarkMode } from "./component/functions/darkTheme";
+import SignUp from "./screens/Authentication/SignUp";
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -8,12 +9,8 @@ function App() {
   }, []);
 
   return (
-    <div className="flex flex-1 bg-white dark:bg-black h-screen w-screen flex-col">
-      <p className="text-black dark:text-white">Hello</p>
-      <button onClick={() => toggleDarkMode(theme, setTheme)}>
-        Toggle Dark Mode
-      </button>
-      <p className="text-black dark:text-white">Current Theme: {theme}</p>
+    <div className="flex flex-1 bg-white dark:bg-dark h-screen w-screen flex-col">
+      <SignUp />
     </div>
   );
 }
