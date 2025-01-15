@@ -1,7 +1,7 @@
-import SignupForm from "../../component/SignUp/SignupForm";
-import WelcomeMessage from "../../component/SignUp/WelcomeMessage";
+import LoginForm from "../../component/Login/LoginForm";
+import WelcomeBack from "../../component/Login/WelcomeBack";
 
-const SignUp = () => {
+const Login = () => {
   return (
     <div
       style={{
@@ -14,21 +14,21 @@ const SignUp = () => {
       className="flex flex-1  text-black dark:text-white justify-center items-center"
     >
       <div
-        className=" rounded-xl sm:h-[80%] w-[70%]  relative flex overflow-hidden shadow-sm shadow-white "
+        className=" rounded-xl sm:h-[80%] w-[70%]  relative flex overflow-hidden "
         style={{
           backgroundImage: "url('/asset/pokhara.jpg')",
           backgroundSize: "cover",
         }}
       >
-        <div className=" flex flex-1 bg-gradient-to-r from-black/50 via-dark to-dark z-10 px-5 py-5 justify-center ">
+        <div className=" flex flex-1 bg-gradient-to-r from-black/50 via-dark to-dark z-10 px-5 py-5 justify-center  ">
           <div className="hidden md:flex w-[50%]">
-            <WelcomeMessage />
+            <WelcomeBack />
           </div>
-          <SignupForm />
+          <LoginForm />
         </div>
       </div>
     </div>
   );
 };
 
-export default SignUp;
+export default Login;
