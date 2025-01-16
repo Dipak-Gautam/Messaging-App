@@ -18,6 +18,7 @@ const toggleDarkMode = (
   setTheme: React.Dispatch<React.SetStateAction<string>>
 ) => {
   const newTheme = theme === "dark" ? "light" : "dark";
+
   setTheme(newTheme);
   updateDocumentClass(newTheme);
 };

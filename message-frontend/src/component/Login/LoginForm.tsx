@@ -2,6 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import z, { string } from "zod";
 import TextInputControllers from "../Controllers/TextInputControllers";
+import { useNavigate } from "react-router-dom";
 
 const LoginSignupSchema = z.object({
   email: string().email("Please enter a valid email"),
@@ -11,6 +12,7 @@ const LoginSignupSchema = z.object({
 type LoginSignupSchema = z.infer<typeof LoginSignupSchema>;
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const {
     control,
     handleSubmit,
@@ -48,19 +50,22 @@ const LoginForm = () => {
           type="button"
           onClick={handleSubmit(onSubmit)}
           disabled={isSubmitting}
-          className="w-full bg-cyan-600 hover:bg-cyan-700 p-2 rounded-3xl text-sm sm:text-base text-white font-semibold hover:shadow-md hover:shadow-cyan-300/50"
+          className="w-full bg-cyan-500 hover:bg-cyan-600 p-2 rounded-3xl text-sm sm:text-base text-white font-semibold hover:shadow-md hover:shadow-white/50"
         >
           Login
         </button>
       </div>
 
       <div className=" mt-5">
-        <p className=" text-[10px] sm:text-xs flex">
+        <div className=" text-[10px] sm:text-xs flex">
           New to Cosmic
-          <p className=" ml-2 sm:ml-4 underline text-blue-400 cursor-pointer">
+          <p
+            className=" ml-2 sm:ml-4 underline text-blue-400 cursor-pointer"
+            onClick={() => navigate("/signup")}
+          >
             create an account
           </p>
-        </p>
+        </div>
       </div>
     </div>
   );

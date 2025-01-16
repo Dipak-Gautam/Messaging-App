@@ -66,7 +66,7 @@ const TextInputControllers = ({
         )}
       />
 
-      <div className="text-red-500 text-xs h-3">
+      <div className="text-red-500 text-xs h-3 ">
         {error && <p>{error && `${error.message}`}</p>}
       </div>
     </div>

@@ -1,7 +1,13 @@
+import { useEffect, useState } from "react";
 import LoginForm from "../../component/Login/LoginForm";
 import WelcomeBack from "../../component/Login/WelcomeBack";
+import darkTheme from "../../component/functions/darkTheme";
 
 const Login = () => {
+  const [theme, setTheme] = useState("light");
+  useEffect(() => {
+    darkTheme(setTheme);
+  }, []);
   return (
     <div
       style={{
@@ -14,7 +20,7 @@ const Login = () => {
       className="flex flex-1  text-black dark:text-white justify-center items-center"
     >
       <div
-        className=" rounded-xl sm:h-[80%] w-[70%]  relative flex overflow-hidden "
+        className=" rounded-xl sm:h-[80%] w-[70%]  relative flex overflow-hidden shadow-sm shadow-white"
         style={{
           backgroundImage: "url('/asset/pokhara.jpg')",
           backgroundSize: "cover",
