@@ -1,24 +1,23 @@
 import { Dispatch, UnknownAction } from "@reduxjs/toolkit";
-import { ISignUpProp } from "../../Schema/Signup/signup.schema";
+
 import secureFetch from "../SecureFetch/secureFetch.api";
 import { userEndPoint } from "../EndPoint/endpoint";
+import { ILoginProp } from "../../Schema/Login/login.schema";
 import asyncStorage from "../../Functions/localStorage/SaveToken";
 import { tokenAction } from "../../store";
 import { NavigateFunction } from "react-router-dom";
 
-const signupApi = async (
-  signUpData: ISignUpProp,
+const loginApi = async (
+  loginData: ILoginProp,
   dispatch: Dispatch<UnknownAction>,
   navigate: NavigateFunction
 ) => {
   const formData = {
-    name: signUpData.name,
-    mobile: signUpData.phone,
-    email: signUpData.email,
-    password: signUpData.password,
+    email: loginData.email,
+    password: loginData.password,
   };
   const request = await secureFetch({
-    url: `${userEndPoint}/signup`,
+    url: `${userEndPoint}/login`,
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -32,4 +31,4 @@ const signupApi = async (
     navigate("/home");
   }
 };
-export default signupApi;
+export default loginApi;

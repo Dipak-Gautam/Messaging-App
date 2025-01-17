@@ -1,28 +1,24 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
-import z, { string } from "zod";
 import TextInputControllers from "../Controllers/TextInputControllers";
 import { useNavigate } from "react-router-dom";
-
-const LoginSignupSchema = z.object({
-  email: string().email("Please enter a valid email"),
-  password: string().min(8, "Password must be at least 8 characters long"),
-});
-
-type LoginSignupSchema = z.infer<typeof LoginSignupSchema>;
+import { ILoginProp, LoginSignupSchema } from "../../Schema/Login/login.schema";
+import loginApi from "../../ApiService/Login/login.api";
+import { useDispatch } from "react-redux";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
     control,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<LoginSignupSchema>({
+  } = useForm<ILoginProp>({
     resolver: zodResolver(LoginSignupSchema),
   });
 
-  const onSubmit: SubmitHandler<LoginSignupSchema> = async (data) => {
-    console.log("Form submitted", data);
+  const onSubmit: SubmitHandler<ILoginProp> = async (data) => {
+    loginApi(data, dispatch, navigate);
   };
 
   return (
@@ -31,7 +27,7 @@ const LoginForm = () => {
         Login
       </div>
 
-      <div className=" flex  flex-col my-2 gap-3 mb-10 sm:w-72">
+      <div className=" flex  flex-col my-2 gap-3 mb-10 sm:w-72 px-5">
         <TextInputControllers
           label="Email"
           name="email"
@@ -45,12 +41,12 @@ const LoginForm = () => {
           error={errors.password}
         />
       </div>
-      <div className=" w-full sm:w-72">
+      <div className=" w-full sm:w-72 px-5">
         <button
           type="button"
           onClick={handleSubmit(onSubmit)}
           disabled={isSubmitting}
-          className="w-full bg-cyan-500 hover:bg-cyan-600 p-2 rounded-3xl text-sm sm:text-base text-white font-semibold hover:shadow-md hover:shadow-white/50"
+          className="w-full bg-cyan-500 hover:bg-cyan-600 p-1 rounded-3xl text-sm sm:text-sm text-white font-semibold hover:shadow-md hover:shadow-white/50"
         >
           Login
         </button>

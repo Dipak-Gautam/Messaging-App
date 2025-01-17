@@ -21,16 +21,16 @@ const SignupForm = () => {
   });
 
   const onSubmit: SubmitHandler<ISignUpProp> = async (data) => {
-    signupApi(data, dispatch);
+    signupApi(data, dispatch, navigate);
   };
 
   return (
-    <div className="md:w-[50%] flex flex-col items-center my-auto py-auto  ">
+    <div className="md:w-[50%] flex flex-col items-center my-auto  ">
       <div className=" text-xl md:text-xl  font-bold text-black dark:text-white mb-5">
         Create Account
       </div>
 
-      <div className=" flex  flex-col  gap-1 sm:gap-1 mb-6 sm:w-72 px-5 overflow-auto ">
+      <div className=" flex  flex-col  gap-1 sm:gap-1 mb-6 sm:w-72  overflow-auto overflow-y-auto px-5">
         <TextInputControllers
           label="Full Name"
           name="name"
@@ -63,7 +63,7 @@ const SignupForm = () => {
           error={errors.confirmPassword}
         />
       </div>
-      <div className=" w-full sm:w-72 ">
+      <div className=" w-full sm:w-72 px-5">
         <button
           type="button"
           onClick={handleSubmit(onSubmit)}

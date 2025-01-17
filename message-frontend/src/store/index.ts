@@ -4,8 +4,9 @@ const tokenSlice = createSlice({
   name: "token",
   initialState: "",
   reducers: {
-    addToken: () => {
-      console.log("add token called");
+    addToken: (state, action) => {
+      state = action.payload;
+      return state;
     },
   },
 });

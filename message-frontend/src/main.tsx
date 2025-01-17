@@ -7,11 +7,13 @@ import { Provider } from "react-redux";
 import store from "./store";
 import Login from "./screens/Authentication/Login";
 import SignUp from "./screens/Authentication/SignUp";
+import Home from "./screens/MainScreen/Home";
 
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
   { path: "/login", element: <Login /> },
   { path: "/signup", element: <SignUp /> },
+  { path: "/home", element: <Home /> },
 ]);
 
 createRoot(document.getElementById("root")!).render(
