@@ -26,7 +26,7 @@ const SignupForm = () => {
 
   return (
     <div className="md:w-[50%] flex flex-col items-center my-auto  ">
-      <div className=" text-xl md:text-xl  font-bold text-black dark:text-white mb-5">
+      <div className=" text-xl md:text-xl  font-bold  text-white mb-5">
         Create Account
       </div>
 

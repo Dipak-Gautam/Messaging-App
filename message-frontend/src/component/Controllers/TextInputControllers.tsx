@@ -33,21 +33,21 @@ const TextInputControllers = ({
             sx={{
               backgroundColor: "transparent",
               "& .MuiInputBase-input": {
-                color: isDarkMode ? "white" : "black",
+                color: "white",
               },
               "& .MuiInputLabel-root": {
-                color: isDarkMode ? "white" : "black",
+                color: "white",
                 fontSize: 13,
               },
               "& .MuiInput-underline:before": {
-                borderBottomColor: isDarkMode ? "white" : "black",
+                borderBottomColor: "white",
               },
               "& .MuiInput-underline:hover:before": {
                 borderBottomColor: "white",
               },
               "& input::-webkit-autofill": {
                 WebkitBoxShadow: "0 0 0 1000px transparent inset !important",
-                WebkitTextFillColor: isDarkMode ? "white" : "black",
+                WebkitTextFillColor: "white",
                 backgroundColor: "transparent !important",
               },
               "& input::-webkit-contacts-auto-fill-button": {

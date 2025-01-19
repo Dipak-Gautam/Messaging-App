@@ -17,7 +17,7 @@ const Login = () => {
         height: "100vh",
         width: "100%",
       }}
-      className="flex flex-1  text-black dark:text-white justify-center items-center"
+      className="flex flex-1  text-white justify-center items-center"
     >
       <div
         className=" rounded-xl sm:h-[80%] w-[70%]  relative flex overflow-hidden shadow-sm shadow-white"

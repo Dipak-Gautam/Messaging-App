@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import getData from "../../Functions/getLocalData";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 const Index = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   useEffect(() => {
-    getData(navigate, dispatch);
+    getData(navigate);
   }, []);
   return (
     <div className="flex flex-1 bg-dark justify-center items-center">
