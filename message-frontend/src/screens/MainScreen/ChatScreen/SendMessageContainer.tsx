@@ -1,4 +1,3 @@
-import React from "react";
 import { IoMdSend } from "react-icons/io";
 
 const SendMessageContainer = () => {
@@ -7,7 +6,7 @@ const SendMessageContainer = () => {
       <div className="flex-1">
         <input
           type="text"
-          className=" w-full bg-slate-600 p-2 rounded-lg"
+          className=" w-full bg-slate-600 p-2 rounded-lg text-base md:text-lg"
           placeholder="Enter message"
         />
       </div>

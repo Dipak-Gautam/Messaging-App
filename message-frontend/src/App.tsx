@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import darkTheme, { toggleDarkMode } from "./component/functions/darkTheme";
-import SignUp from "./screens/Authentication/SignUp";
-import Login from "./screens/Authentication/Login";
 import Index from "./screens/Authentication/Index";
 
 function App() {

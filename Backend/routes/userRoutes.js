@@ -75,7 +75,7 @@ router.put("/profile/password", jwtAuthMiddleWare, async (req, res) => {
 
 router.get("/all", jwtAuthMiddleWare, async (req, res) => {
   try {
-    const users = await User.find().select("name photo");
+    const users = await User.find().select("name photo email");
     res.status(200).json({ users });
   } catch (error) {
     console.log("find all", error);

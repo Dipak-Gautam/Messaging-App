@@ -8,7 +8,7 @@ interface PeopleListProp {
 
 const PeopleList = ({ name, message, photo }: PeopleListProp) => {
   return (
-    <div className=" border border-slate-400 hover:shadow-md hover:shadow-white/20  p-2 rounded-lg flex my-3 justify-between gap-3 hover:bg-dark cursor-pointer">
+    <div className=" border border-slate-400 hover:shadow-md hover:shadow-white/20  p-2 rounded-lg flex my-3 justify-between gap-3 hover:bg-sDark cursor-pointer">
       <div>
         <div className="bg-pink-500  rounded-full w-10 h-10 flex justify-center items-center">
           D
