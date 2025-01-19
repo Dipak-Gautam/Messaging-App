@@ -1,19 +1,18 @@
-import { useNavigate } from "react-router-dom";
+import MainNav from "../../component/HomeComponents/MainNav";
+import ChatsMenu from "../../component/HomeComponents/SubMenu/ChatsMenu";
+import ChatScreen from "./ChatScreen/ChatScreen";
 
 const Home = () => {
-  const navigate = useNavigate();
   return (
-    <div className="flex px-4 justify-center items-center h-screen w-[100vw]">
-      <div className=" ">
-        <button
-          className="bg-red-500 p-2 rounded-lg text-white font-bold"
-          onClick={() => {
-            localStorage.removeItem("token");
-            navigate("/login");
-          }}
-        >
-          logOut
-        </button>
+    <div className="flex  h-screen w-[100vw] bg-dark">
+      <div className=" w-20 bg-slate-800">
+        <MainNav />
+      </div>
+      <div className="w-96 ">
+        <ChatsMenu />
+      </div>
+      <div className="flex flex-1 ">
+        <ChatScreen />
       </div>
     </div>
   );
