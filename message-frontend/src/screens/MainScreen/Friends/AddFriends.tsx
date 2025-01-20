@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import AddFriendBanner from "../../../component/AddFriends/AddFriendBanner";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IStore } from "../../../Schema/Store/store.schema";
 import getAllUser from "../../../ApiService/Friends/getAllUser.api";
 import { Spinner } from "react-bootstrap";
 import { TfiFaceSad } from "react-icons/tfi";
 import { IRequestProp } from "../../../Schema/Request/addFriend.schema";
 import PeopleCard from "../../../component/AddFriends/PeopleCard";
+import { modalAction } from "../../../store";
 
 const AddFriends = () => {
   const token = useSelector((store: IStore) => store.token);
   const [loading, setLoading] = useState(false);
   const [allUser, setAllUser] = useState<IRequestProp[]>([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getAllUser(token, setLoading, setAllUser);

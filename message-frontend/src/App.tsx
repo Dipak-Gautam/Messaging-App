@@ -10,6 +10,7 @@ import AddFriends from "./screens/MainScreen/Friends/AddFriends";
 import getToken from "./Functions/localStorage/getToken";
 import { useDispatch } from "react-redux";
 import FriendRequest from "./screens/MainScreen/Friends/FriendRequest";
+import MessageModal from "./component/Modal/MessageModal";
 
 const router = createBrowserRouter([
   { path: "/", element: <Index /> },
@@ -40,6 +41,7 @@ function App() {
   return (
     <div className="flex flex-1 bg-white dark:bg-dark h-screen w-screen flex-col">
       <RouterProvider router={router} />
+      <MessageModal />
     </div>
   );
 }

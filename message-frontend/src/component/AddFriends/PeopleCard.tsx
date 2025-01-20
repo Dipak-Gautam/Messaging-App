@@ -1,11 +1,20 @@
 import React from "react";
 import { IoPersonAddOutline } from "react-icons/io5";
 import { IRequestProp } from "../../Schema/Request/addFriend.schema";
+import addFriendApi from "../../ApiService/Friends/addFriend.api";
+import { useDispatch, useSelector } from "react-redux";
+import { IStore } from "../../Schema/Store/store.schema";
 interface PeopleCardProp {
   data: IRequestProp;
 }
 
 const PeopleCard = ({ data }: PeopleCardProp) => {
+  const token = useSelector((store: IStore) => store.token);
+  const dispatch = useDispatch();
+
+  const handleSend = () => {
+    addFriendApi(token, data.name, data._id, dispatch, data.photo);
+  };
   return (
     <div className="   border-1 border-gray-500 hover:shadow-md hover:shadow-white/50 p-2 px-4  rounded-2xl w-full text-white flex items-center justify-between gap-3">
       <div>
@@ -17,7 +26,10 @@ const PeopleCard = ({ data }: PeopleCardProp) => {
         <p className="m-0 p-0">{data.name}</p>
         <p className="m-0 p-0 text-slate-400">{data.email}</p>
       </div>
-      <div className="flex gap-2  p-1 px-2 rounded-md bg-gPrimary font-semibold hover:border hover:border-gPrimary">
+      <div
+        className="flex gap-2  p-1 px-2 rounded-md bg-gPrimary font-semibold hover:border hover:border-gPrimary"
+        onClick={handleSend}
+      >
         <IoPersonAddOutline size={20} />
         <div> Send Request</div>
       </div>
