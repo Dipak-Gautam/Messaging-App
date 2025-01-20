@@ -24,8 +24,8 @@ const MainNav = () => {
         <div className=" flex  flex-col items-center gap-5">
           <OverlayTrigger
             placement="right"
-            delay={{ show: 250, hide: 400 }}
-            overlay={SuggestOverLay("Chats")}
+            delay={{ show: 250, hide: 250 }}
+            overlay={SuggestOverLay("Chats", "right")}
           >
             <div className="p-2 rounded-full bg-slate-600">
               <BsChatSquareText
@@ -36,8 +36,8 @@ const MainNav = () => {
           </OverlayTrigger>
           <OverlayTrigger
             placement="right"
-            delay={{ show: 250, hide: 400 }}
-            overlay={SuggestOverLay("Tasks")}
+            delay={{ show: 250, hide: 250 }}
+            overlay={SuggestOverLay("Tasks", "right")}
           >
             <div className="p-2 rounded-full ">
               <FaTasks className=" text-[#a2a5b1] hover:text-white" size={23} />
