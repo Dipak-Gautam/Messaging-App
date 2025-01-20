@@ -1,21 +1,10 @@
-import React from "react";
-import { TbMessage2Plus } from "react-icons/tb";
 import PeopleList from "../PeopleList/PeopleList";
-import { useNavigate } from "react-router-dom";
+import ChatMenuTopBanner from "./ChatMenuTopBanner";
 
 const ChatsMenu = () => {
-  const navigate = useNavigate();
   return (
     <div className="w-full h-full   p-2 py-4 bg-[#2d3031]">
-      <div className="text-white text-xl font-bold flex justify-between w-full px-4 items-center p-2 border-b ">
-        <div>Chats</div>
-        <div onClick={() => navigate("/home/add-friend")}>
-          <TbMessage2Plus
-            size={25}
-            className=" text-[#a2a5b1] hover:text-white "
-          />
-        </div>
-      </div>
+      <ChatMenuTopBanner />
       <div className="mt-2 px-2">
         <PeopleList message="Hello from Dipak" name="Dipak Gautam" />
         <PeopleList message="Hi" name="Mamata Bihene" />

@@ -17,7 +17,7 @@ const PeopleCard = ({ data }: PeopleCardProp) => {
         <p className="m-0 p-0">{data.name}</p>
         <p className="m-0 p-0 text-slate-400">{data.email}</p>
       </div>
-      <div className="flex gap-2  p-1 px-2 rounded-md bg-gPrimary font-semibold hover:border">
+      <div className="flex gap-2  p-1 px-2 rounded-md bg-gPrimary font-semibold hover:border hover:border-gPrimary">
         <IoPersonAddOutline size={20} />
         <div> Send Request</div>
       </div>

@@ -1,13 +1,16 @@
-import { Dispatch, UnknownAction } from "@reduxjs/toolkit";
 import { NavigateFunction } from "react-router-dom";
-import { tokenAction } from "../store";
 
 const getData = (navigate: NavigateFunction) => {
   let prev = localStorage.getItem("prevLogin");
-  if (prev == null) {
-    navigate("/signup");
+  let token = localStorage.getItem("token");
+  if (token == null) {
+    if (prev == null) {
+      navigate("/signup");
+    } else {
+      navigate("/login");
+    }
   } else {
-    navigate("/login");
+    navigate("/home");
   }
 };
 export default getData;

@@ -1,10 +1,13 @@
 import { useEffect } from "react";
 import getData from "../../Functions/getLocalData";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { IStore } from "../../Schema/Store/store.schema";
 
 const Index = () => {
   const navigate = useNavigate();
+  const token = useSelector((store: IStore) => store.token);
+
   useEffect(() => {
     getData(navigate);
   }, []);
