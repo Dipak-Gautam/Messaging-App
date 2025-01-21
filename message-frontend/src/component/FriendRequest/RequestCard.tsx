@@ -2,12 +2,22 @@ import React from "react";
 import { IRequest } from "../../Schema/UserInfo/request.schema";
 import { FaUserCheck } from "react-icons/fa";
 import { FaUserXmark } from "react-icons/fa6";
+import requestAcceptApi from "../../ApiService/Friends/requestAccept.api";
+import { useDispatch, useSelector } from "react-redux";
+import { IStore } from "../../Schema/Store/store.schema";
 
 interface RequestCardProp {
   data: IRequest;
 }
 
 const RequestCard = ({ data }: RequestCardProp) => {
+  const dispatch = useDispatch();
+  const token = useSelector((store: IStore) => store.token);
+
+  const handelAccept = () => {
+    requestAcceptApi(token, dispatch, data.id);
+  };
+
   return (
     <div className="   border-1 border-gray-500 hover:shadow-md hover:shadow-white/50 p-2 px-4  rounded-2xl w-full text-white flex items-center justify-between gap-3 h-fit">
       <div>
@@ -19,7 +29,10 @@ const RequestCard = ({ data }: RequestCardProp) => {
         <p className="m-0 p-0">{data.name}</p>
       </div>
       <div className="flex gap-3">
-        <div className="flex gap-2  p-1 px-2 rounded-md bg-gPrimary font-semibold border-1 border-sDark hover:border hover:border-gPrimary">
+        <div
+          className="flex gap-2  p-1 px-2 rounded-md bg-gPrimary font-semibold border-1 border-sDark hover:border hover:border-gPrimary"
+          onClick={handelAccept}
+        >
           <FaUserCheck size={20} />
           <div>Accept</div>
         </div>

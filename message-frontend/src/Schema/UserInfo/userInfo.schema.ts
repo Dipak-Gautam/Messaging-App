@@ -2,7 +2,7 @@ import { IConversation } from "./conversation.schema";
 import { IRequest } from "./request.schema";
 
 export interface IUserInfo {
-  conversation: IConversation[];
+  conversations: IConversation[];
   email: string;
   friends: any;
   mobile: string;
