@@ -16,4 +16,14 @@ router.post("/", jwtAuthMiddleWare, async (req, res) => {
   }
 });
 
+router.get("/", jwtAuthMiddleWare, async (req, res) => {
+  try {
+    const con = await Conversation.findById(req.body.convId);
+    res.status(200).json(con);
+  } catch (error) {
+    console.log("message/get", error);
+    res.status(500).json(error);
+  }
+});
+
 module.exports = router;
