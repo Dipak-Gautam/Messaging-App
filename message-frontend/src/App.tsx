@@ -11,6 +11,7 @@ import getToken from "./Functions/localStorage/getToken";
 import { useDispatch } from "react-redux";
 import FriendRequest from "./screens/MainScreen/Friends/FriendRequest";
 import MessageModal from "./component/Modal/MessageModal";
+import Setting from "./screens/MainScreen/Settings/Setting";
 
 const router = createBrowserRouter([
   { path: "/", element: <Index /> },
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { path: "/home/add-friend", element: <AddFriends /> },
       { path: "/home/chats", element: <ChatScreen /> },
       { path: "/home/friend-request", element: <FriendRequest /> },
+      { path: "home/setting", element: <Setting /> },
     ],
   },
 ]);

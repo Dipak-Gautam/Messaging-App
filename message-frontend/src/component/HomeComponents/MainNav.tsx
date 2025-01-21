@@ -45,7 +45,10 @@ const MainNav = () => {
           </OverlayTrigger>
         </div>
         <div className="flex  flex-col items-center gap-4">
-          <div className="p-2 rounded-full ">
+          <div
+            className="p-2 rounded-full "
+            onClick={() => navigate("home/setting")}
+          >
             <IoSettingsOutline
               className=" text-[#a2a5b1] hover:text-white"
               size={23}

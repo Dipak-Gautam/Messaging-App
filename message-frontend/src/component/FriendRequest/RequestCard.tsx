@@ -1,6 +1,7 @@
 import React from "react";
 import { IRequest } from "../../Schema/UserInfo/request.schema";
 import { FaUserCheck } from "react-icons/fa";
+import { FaUserXmark } from "react-icons/fa6";
 
 interface RequestCardProp {
   data: IRequest;
@@ -17,9 +18,15 @@ const RequestCard = ({ data }: RequestCardProp) => {
       <div className="flex-1 leading-6">
         <p className="m-0 p-0">{data.name}</p>
       </div>
-      <div className="flex gap-2  p-1 px-2 rounded-md bg-gPrimary font-semibold hover:border hover:border-gPrimary">
-        <FaUserCheck size={20} />
-        <div>Accept</div>
+      <div className="flex gap-3">
+        <div className="flex gap-2  p-1 px-2 rounded-md bg-gPrimary font-semibold border-1 border-sDark hover:border hover:border-gPrimary">
+          <FaUserCheck size={20} />
+          <div>Accept</div>
+        </div>
+        <div className="flex gap-2   p-1 px-2 rounded-md bg-gray-600 font-semibold border-1 border-sDark hover:border hover:border-gray-600">
+          <FaUserXmark size={20} />
+          <div>Reject</div>
+        </div>
       </div>
     </div>
   );
