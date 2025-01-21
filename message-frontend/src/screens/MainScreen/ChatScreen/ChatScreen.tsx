@@ -1,6 +1,6 @@
-import React from "react";
 import TopBanner from "../../../component/ChatComponent/TopBanner";
 import SendMessageContainer from "./SendMessageContainer";
+import ConversationContainer from "./ConversationContainer";
 
 const ChatScreen = () => {
   return (
@@ -12,7 +12,7 @@ const ChatScreen = () => {
     >
       <TopBanner />
       <div className="flex-1">
-        <p className="text-white">HEllo</p>
+        <ConversationContainer />
       </div>
       <SendMessageContainer />
     </div>

@@ -16,7 +16,7 @@ router.post("/", jwtAuthMiddleWare, async (req, res) => {
   }
 });
 
-router.get("/", jwtAuthMiddleWare, async (req, res) => {
+router.post("/message", jwtAuthMiddleWare, async (req, res) => {
   try {
     const con = await Conversation.findById(req.body.convId);
     res.status(200).json(con);

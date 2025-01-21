@@ -25,6 +25,7 @@ const SendMessageContainer = () => {
       messageRef.current.value,
       setMessageStatus
     );
+    messageRef.current.value = "";
   };
 
   return (
