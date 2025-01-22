@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { ITask } from "../../Schema/Task/task.schema";
+import UpdateTaskModal from "./UpdateTask/UpdateTaskModal";
 
 interface TaskCardProp {
   data: ITask;
@@ -13,23 +15,37 @@ const colors = {
 };
 
 const TaskCard = ({ data }: TaskCardProp) => {
+  const [modalShow, setModalShow] = useState(false);
   return (
-    <div className="border-1 border-slate-500 p-2 px-4 rounded-xl hover:shadow-md hover:shadow-white/50 flex gap-3">
-      <div className="flex-1 flex flex-col justify-between ">
-        <div className="text-xl font-medium">{data.name}</div>
-        <div className="text-sm">{data.description}</div>
-      </div>
-      <div className=" flex flex-col gap-1">
-        <div
-          className={` text-sm p-1 px-2 ${
-            colors[data.status]
-          } rounded-xl text-center font-medium`}
-        >
-          {data.status}
+    <>
+      <div
+        className="border-1 border-slate-500 p-2 px-4 rounded-xl hover:shadow-md hover:shadow-white/50 flex gap-3"
+        onClick={() => setModalShow(true)}
+      >
+        <div className="flex-1 flex flex-col justify-between ">
+          <div className="text-xl font-medium">{data.name}</div>
+          <div className="text-sm">{data.description}</div>
         </div>
-        <div className="text-sm text-gray-200"> {data.assigned[0].name}</div>
+        <div className=" flex flex-col gap-1">
+          <div
+            className={` text-sm p-1 px-2 ${
+              colors[data.status]
+            } rounded-xl text-center font-medium cursor-pointer`}
+          >
+            {data.status}
+          </div>
+
+          <div className="text-sm text-gray-200 text-center">
+            {data.assigned[0].name}
+          </div>
+        </div>
       </div>
-    </div>
+      <UpdateTaskModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        data={data}
+      />
+    </>
   );
 };
 

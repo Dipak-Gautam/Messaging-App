@@ -11,29 +11,37 @@ interface PeopleCardProp {
 const PeopleCard = ({ data }: PeopleCardProp) => {
   const token = useSelector((store: IStore) => store.token);
   const dispatch = useDispatch();
+  const userInfo = useSelector((store: IStore) => store.userInfo);
 
   const handleSend = () => {
     addFriendApi(token, data.name, data._id, dispatch, data.photo);
   };
+
   return (
-    <div className="   border-1 border-gray-500 hover:shadow-md hover:shadow-white/50 p-2 px-4  rounded-2xl w-full text-white flex items-center justify-between gap-3">
-      <div>
-        <div className="  p-2 text-lg w-12 h-12 bg-pink-500 flex justify-center items-center rounded-full">
-          D
+    <>
+      <div
+        className={`   border-1 border-gray-500 hover:shadow-md hover:shadow-white/50 p-2 px-4  rounded-2xl w-full text-white flex items-center justify-between gap-3 ${
+          data._id == userInfo._id && "hidden"
+        }`}
+      >
+        <div>
+          <div className="  p-2 text-lg w-12 h-12 bg-pink-500 flex justify-center items-center rounded-full">
+            D
+          </div>
+        </div>
+        <div className="flex-1 leading-6">
+          <p className="m-0 p-0">{data.name}</p>
+          <p className="m-0 p-0 text-slate-400">{data.email}</p>
+        </div>
+        <div
+          className="flex gap-2  p-1 px-2 rounded-md bg-gPrimary font-semibold hover:border hover:border-gPrimary"
+          onClick={handleSend}
+        >
+          <IoPersonAddOutline size={20} />
+          <div> Send Request</div>
         </div>
       </div>
-      <div className="flex-1 leading-6">
-        <p className="m-0 p-0">{data.name}</p>
-        <p className="m-0 p-0 text-slate-400">{data.email}</p>
-      </div>
-      <div
-        className="flex gap-2  p-1 px-2 rounded-md bg-gPrimary font-semibold hover:border hover:border-gPrimary"
-        onClick={handleSend}
-      >
-        <IoPersonAddOutline size={20} />
-        <div> Send Request</div>
-      </div>
-    </div>
+    </>
   );
 };
 

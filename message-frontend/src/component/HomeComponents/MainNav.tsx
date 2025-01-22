@@ -11,6 +11,7 @@ import SuggestOverLay from "../OverLay/SuggestOverLay";
 const MainNav = () => {
   const navigate = useNavigate();
   const [modalShow, setModalShow] = useState(false);
+  const [indicator, setIndicator] = useState<number>(0);
 
   const accepted = () => {
     localStorage.removeItem("token");
@@ -24,10 +25,15 @@ const MainNav = () => {
         <div className=" flex  flex-col items-center gap-5">
           <OverlayTrigger
             placement="right"
-            delay={{ show: 250, hide: 250 }}
+            delay={{ show: 400, hide: 250 }}
             overlay={SuggestOverLay("Chats", "right")}
           >
-            <div className="p-2 rounded-full bg-slate-600">
+            <div
+              className={`p-2 rounded-full ${
+                indicator == 1 && "bg-slate-600"
+              } `}
+              onClick={() => setIndicator(1)}
+            >
               <BsChatSquareText
                 size={23}
                 className=" text-[#a2a5b1] hover:text-white "
@@ -36,12 +42,16 @@ const MainNav = () => {
           </OverlayTrigger>
           <OverlayTrigger
             placement="right"
-            delay={{ show: 250, hide: 250 }}
+            delay={{ show: 400, hide: 250 }}
             overlay={SuggestOverLay("Tasks", "right")}
           >
             <div
-              className="p-2 rounded-full "
-              onClick={() => navigate("home/task")}
+              className={`p-2 rounded-full ${
+                indicator == 2 && "bg-slate-600"
+              } `}
+              onClick={() => {
+                navigate("home/task"), setIndicator(2);
+              }}
             >
               <FaTasks className=" text-[#a2a5b1] hover:text-white" size={23} />
             </div>
@@ -49,8 +59,10 @@ const MainNav = () => {
         </div>
         <div className="flex  flex-col items-center gap-4">
           <div
-            className="p-2 rounded-full "
-            onClick={() => navigate("home/setting")}
+            className={`p-2 rounded-full ${indicator == 3 && "bg-slate-600"} `}
+            onClick={() => {
+              navigate("home/setting"), setIndicator(3);
+            }}
           >
             <IoSettingsOutline
               className=" text-[#a2a5b1] hover:text-white"
