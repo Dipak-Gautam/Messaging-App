@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsChatSquareText } from "react-icons/bs";
 import { FaTasks } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
@@ -10,7 +10,7 @@ import SuggestOverLay from "../OverLay/SuggestOverLay";
 
 const MainNav = () => {
   const navigate = useNavigate();
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
   const accepted = () => {
     localStorage.removeItem("token");

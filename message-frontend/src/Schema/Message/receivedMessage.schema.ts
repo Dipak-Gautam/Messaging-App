@@ -1,4 +1,4 @@
-interface sender {
+export interface sender {
   id: string;
   name: string;
 }
