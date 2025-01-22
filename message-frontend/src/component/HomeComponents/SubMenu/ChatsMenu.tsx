@@ -13,7 +13,11 @@ const ChatsMenu = () => {
       <div className="mt-2 px-2">
         {userInfo?.conversations?.map((item) => (
           <div
-            onClick={() => navigate("/home/chats", { state: { id: item.id } })}
+            onClick={() =>
+              navigate("/home/chats", {
+                state: { id: item.id, name: item.name },
+              })
+            }
             className="my-3 "
             key={item.id}
           >

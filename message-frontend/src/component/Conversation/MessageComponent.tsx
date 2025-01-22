@@ -20,7 +20,11 @@ const MessageComponent = ({ data }: MessageComponent) => {
       >
         <p className="p-0 m-0 my-auto">{data.message}</p>
       </div>
-      <p className="text-slate-500 text-xs text-right m-0 p-0 mt-1">
+      <p
+        className={`text-slate-500 text-xs  m-0 p-0 mt-1 ${
+          userInfo._id == data.sender.id ? "text-right" : "text-left"
+        }`}
+      >
         {data.sender.name}
       </p>
     </div>

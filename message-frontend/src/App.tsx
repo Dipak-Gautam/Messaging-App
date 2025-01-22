@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import FriendRequest from "./screens/MainScreen/Friends/FriendRequest";
 import MessageModal from "./component/Modal/MessageModal";
 import Setting from "./screens/MainScreen/Settings/Setting";
+import TaskScreen from "./screens/MainScreen/Task/TaskScreen";
 
 const router = createBrowserRouter([
   { path: "/", element: <Index /> },
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
       { path: "/home/chats", element: <ChatScreen /> },
       { path: "/home/friend-request", element: <FriendRequest /> },
       { path: "home/setting", element: <Setting /> },
+      { path: "home/task", element: <TaskScreen /> },
     ],
   },
 ]);

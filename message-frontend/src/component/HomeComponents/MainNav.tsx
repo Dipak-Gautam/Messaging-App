@@ -39,7 +39,10 @@ const MainNav = () => {
             delay={{ show: 250, hide: 250 }}
             overlay={SuggestOverLay("Tasks", "right")}
           >
-            <div className="p-2 rounded-full ">
+            <div
+              className="p-2 rounded-full "
+              onClick={() => navigate("home/task")}
+            >
               <FaTasks className=" text-[#a2a5b1] hover:text-white" size={23} />
             </div>
           </OverlayTrigger>
