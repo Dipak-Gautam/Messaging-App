@@ -19,12 +19,14 @@ const options = [
 
 interface SimpleDropDownProp {
   data: ITask;
+  status: React.MutableRefObject<any>;
 }
 
-const SimpleDropDown = ({ data }: SimpleDropDownProp) => {
+const SimpleDropDown = ({ data, status }: SimpleDropDownProp) => {
   const [selectedValue, setSelectedValue] = useState(data.status);
   const handleChange = (event: any) => {
     setSelectedValue(event.target.value);
+    status.current = event.target.value;
   };
   return (
     <>
@@ -34,7 +36,7 @@ const SimpleDropDown = ({ data }: SimpleDropDownProp) => {
         className={`p-1 px-2 rounded-md ${colors[selectedValue]} text-white font-medium`}
       >
         {options.map((item) => (
-          <option value={item.value} className="bg-gray-500">
+          <option key={item.value} value={item.value} className="bg-gray-500">
             {item.value}
           </option>
         ))}

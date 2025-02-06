@@ -1,10 +1,27 @@
 import { TextField } from "@mui/material";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import SimpleDropDown from "../../DropDown/SimpleDropDown";
+import { useDispatch, useSelector } from "react-redux";
+import updateTaskApi from "../../../ApiService/Task/updateTaskApi";
+import { IStore } from "../../../Schema/Store/store.schema";
 
 const UpdateTaskModal = ({ ...props }) => {
-  const reason = useRef("");
+  const status = useRef(props.data.status);
+  const token = useSelector((store: IStore) => store.token);
+  const dispatch = useDispatch();
+  const reason = useRef<HTMLInputElement>(null);
+  const handleSubmit = () => {
+    console.log("props", props);
+    updateTaskApi(
+      dispatch,
+      token,
+      props.data._id,
+      status.current,
+      props.onHide,
+      reason.current?.value
+    );
+  };
   return (
     <div>
       <Modal
@@ -23,11 +40,12 @@ const UpdateTaskModal = ({ ...props }) => {
           <div className="flex items-center justify-center gap-3 my-2">
             <div className="text-white font-medium text-xl">Status : </div>
             <div>
-              <SimpleDropDown data={props.data} />
+              <SimpleDropDown data={props.data} status={status} />
             </div>
           </div>
           <div className="w-[70%] mx-auto">
             <TextField
+              inputRef={reason}
               multiline={true}
               label={"Reason"}
               variant="standard"
@@ -61,7 +79,10 @@ const UpdateTaskModal = ({ ...props }) => {
           </div>
 
           <div className="flex justify-center mt-3">
-            <div className="text-white font-medium bg-gPrimary  p-1 px-2 rounded-lg w-[50%] text-center">
+            <div
+              className="text-white font-medium bg-gPrimary  p-1 px-2 rounded-lg w-[50%] text-center"
+              onClick={() => handleSubmit()}
+            >
               Submit
             </div>
           </div>

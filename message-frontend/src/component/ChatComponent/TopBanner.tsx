@@ -1,7 +1,4 @@
-import React from "react";
 import { HiDotsVertical } from "react-icons/hi";
-import { useSelector } from "react-redux";
-import { IStore } from "../../Schema/Store/store.schema";
 import { useLocation } from "react-router-dom";
 
 const TopBanner = () => {

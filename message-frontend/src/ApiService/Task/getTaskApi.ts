@@ -1,8 +1,6 @@
-import { Dispatch, UnknownAction } from "@reduxjs/toolkit";
 import secureFetch from "../SecureFetch/secureFetch.api";
 import { mainEndPoint } from "../EndPoint/endpoint";
 import { ITask } from "../../Schema/Task/task.schema";
-import { modalAction } from "../../store";
 
 const getTaskApi = async (
   token: string,
