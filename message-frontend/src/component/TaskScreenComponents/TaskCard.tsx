@@ -4,6 +4,7 @@ import UpdateTaskModal from "./UpdateTask/UpdateTaskModal";
 
 interface TaskCardProp {
   data: ITask;
+  setTask: React.Dispatch<React.SetStateAction<ITask[]>>;
 }
 
 const colors = {
@@ -14,7 +15,7 @@ const colors = {
   Stopped: "bg-red-500",
 };
 
-const TaskCard = ({ data }: TaskCardProp) => {
+const TaskCard = ({ data, setTask }: TaskCardProp) => {
   const [modalShow, setModalShow] = useState(false);
   return (
     <>
@@ -44,6 +45,7 @@ const TaskCard = ({ data }: TaskCardProp) => {
         show={modalShow}
         onHide={() => setModalShow(false)}
         data={data}
+        setTask={setTask}
       />
     </>
   );

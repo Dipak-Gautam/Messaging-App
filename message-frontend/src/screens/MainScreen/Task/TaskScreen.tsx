@@ -9,7 +9,6 @@ import { ITask } from "../../../Schema/Task/task.schema";
 import { TfiFaceSad } from "react-icons/tfi";
 
 const TaskScreen = () => {
-  const dispatch = useDispatch();
   const [task, setTask] = useState<ITask[]>([]);
   const [loading, setLoading] = useState(true);
   const token = useSelector((store: IStore) => store.token);
@@ -44,7 +43,7 @@ const TaskScreen = () => {
       {!loading && task.length != 0 && (
         <div className="flex-1 px-3 pt-3 flex flex-col gap-2">
           {task.map((item) => (
-            <TaskCard key={item._id} data={item} />
+            <TaskCard key={item._id} data={item} setTask={setTask} />
           ))}
         </div>
       )}

@@ -2,6 +2,7 @@ import { Dispatch, UnknownAction } from "@reduxjs/toolkit";
 import { mainEndPoint } from "../EndPoint/endpoint";
 import secureFetch from "../SecureFetch/secureFetch.api";
 import { modalAction } from "../../store";
+import { ITask } from "../../Schema/Task/task.schema";
 
 const updateTaskApi = async (
   dispatch: Dispatch<UnknownAction>,
@@ -14,6 +15,7 @@ const updateTaskApi = async (
     | "Completed"
     | "Stopped",
   setModalShow: React.Dispatch<React.SetStateAction<boolean>>,
+  setTask: React.Dispatch<React.SetStateAction<ITask[]>>,
   reason?: string
 ) => {
   console.log("hello from updateTaskApi", token, id, status, reason);
@@ -34,6 +36,7 @@ const updateTaskApi = async (
   const response = await request.json();
   if (request.status == 200) {
     setModalShow(false);
+    setTask(response.data);
     dispatch(
       modalAction.showModal({
         title: "task updated sucessfully",

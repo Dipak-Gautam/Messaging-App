@@ -12,13 +12,13 @@ const UpdateTaskModal = ({ ...props }) => {
   const dispatch = useDispatch();
   const reason = useRef<HTMLInputElement>(null);
   const handleSubmit = () => {
-    console.log("props", props);
     updateTaskApi(
       dispatch,
       token,
       props.data._id,
       status.current,
       props.onHide,
+      props.setTask,
       reason.current?.value
     );
   };

@@ -30,7 +30,8 @@ router.put("/status", async (req, res) => {
     const updateTask = await Task.findById(data.id);
     updateTask.status = req.body.status;
     const response = await updateTask.save();
-    res.status(200).json({ message: "Task Updated", data: response });
+    const task = await Task.find();
+    res.status(200).json({ message: "Task Updated", data: task });
   } catch (error) {
     console.log("task/status update", error);
     res.status(500).json({ message: "internal server error", error: error });
