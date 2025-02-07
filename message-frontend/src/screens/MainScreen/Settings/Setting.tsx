@@ -1,7 +1,11 @@
+import SettingOptions from "./Components/SettingOptions";
+import TopBanner from "./Components/TopBanner";
+
 const Setting = () => {
   return (
-    <div className="border flex flex-1 text-white items-center justify-center">
-      Hello from settings screen
+    <div className=" flex flex-col flex-1 text-white ">
+      <TopBanner />
+      <SettingOptions />
     </div>
   );
 };
