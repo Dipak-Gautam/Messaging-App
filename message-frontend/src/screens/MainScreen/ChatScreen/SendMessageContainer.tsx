@@ -28,6 +28,13 @@ const SendMessageContainer = () => {
     messageRef.current.value = "";
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleSend();
+    }
+  };
+
   return (
     <div className="text-white mb-2 px-4  p-2 flex items-center gap-5">
       <div className="flex-1">
@@ -36,6 +43,7 @@ const SendMessageContainer = () => {
           type="text"
           className=" w-full bg-slate-600 p-2 rounded-lg text-base md:text-lg"
           placeholder="Enter message"
+          onKeyDown={handleKeyDown}
         />
       </div>
       <div className="" onClick={handleSend}>
