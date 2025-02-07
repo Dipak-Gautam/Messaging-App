@@ -7,15 +7,22 @@ import { Spinner } from "react-bootstrap";
 import { TfiFaceSad } from "react-icons/tfi";
 import { IRequestProp } from "../../../Schema/Request/addFriend.schema";
 import PeopleCard from "../../../component/AddFriends/PeopleCard";
+import excludeElements from "../../../component/CustomFunctions/friendFilter";
 
 const AddFriends = () => {
+  const userData = useSelector((store: IStore) => store.userInfo);
   const token = useSelector((store: IStore) => store.token);
   const [loading, setLoading] = useState(false);
   const [allUser, setAllUser] = useState<IRequestProp[]>([]);
+  const [showUser, setShowUser] = useState<IRequestProp[]>([]);
 
   useEffect(() => {
     getAllUser(token, setLoading, setAllUser);
   }, []);
+
+  useEffect(() => {
+    setShowUser(excludeElements(allUser, userData?.conversations));
+  }, [allUser]);
 
   return (
     <div className="flex flex-col  bg-sDark flex-1 ">
@@ -44,7 +51,7 @@ const AddFriends = () => {
         )}
         {!loading && allUser.length != 0 && (
           <div className="flex flex-col pt-3 w-full h-full  px-5 gap-3 ">
-            {allUser.map((item: IRequestProp) => (
+            {showUser.map((item: IRequestProp) => (
               <PeopleCard key={item._id} data={item} />
             ))}
           </div>
