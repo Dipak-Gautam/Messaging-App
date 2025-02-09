@@ -9,7 +9,7 @@ const FriendRequest = () => {
   return (
     <div className="flex flex-1 flex-col">
       <RequestTopBanner />
-      <div className="flex  flex-1 gap-2 my-3 px-3">
+      <div className="flex flex-col  flex-1 gap-2 my-3 px-3">
         {userData?.requests?.map((item) => (
           <RequestCard data={item} key={item._id} />
         ))}

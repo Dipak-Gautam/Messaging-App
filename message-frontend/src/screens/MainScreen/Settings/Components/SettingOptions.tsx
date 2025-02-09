@@ -18,22 +18,22 @@ const SettingOptions = () => {
         </div>
       </div>
       <div className="mx-10 flex flex-col gap-4">
-        <div className="flex text-slate-200 items-center gap-4 border-b border-slate-400 p-2 hover:text-white hover:border-white text-lg hover:text-xl">
+        <div className="flex text-slate-200 items-center gap-4 border-b border-slate-400 p-2 hover:text-white hover:border-white text-lg hover:text-xl cursor-pointer">
           <HiMiniUserCircle className="text-4xl" />
           <div className="font-medium"> Account</div>
         </div>
 
-        <div className="flex text-slate-200 items-center gap-4 border-b border-slate-400 p-2 hover:text-white hover:border-white text-lg hover:text-xl">
-          <MdOutlineMarkUnreadChatAlt className="text-4xl" />
+        <div className="flex text-slate-200 items-center gap-4 border-b border-slate-400 p-2 hover:text-white hover:border-white text-lg hover:text-xl cursor-pointer">
+          <MdOutlineMarkUnreadChatAlt className="text-3xl" />
           <div className=" font-medium"> Chats</div>
         </div>
 
-        <div className="flex text-slate-200 items-center gap-4 border-b border-slate-400 p-2 hover:text-white hover:border-white text-lg hover:text-xl">
+        <div className="flex text-slate-200 items-center gap-4 border-b border-slate-400 p-2 hover:text-white hover:border-white text-lg hover:text-xl cursor-pointer">
           <IoIosNotificationsOutline className="text-4xl" />
           <div className="font-medium"> Notification</div>
         </div>
 
-        <div className="flex  items-center gap-4 border-b border-slate-400 p-2 text-red-600 ">
+        <div className="flex  items-center gap-4 border-b border-slate-400 p-2 text-red-600  cursor-pointer">
           <MdLogout className="text-4xl" />
           <div className="text-lg font-medium ">Logout</div>
         </div>

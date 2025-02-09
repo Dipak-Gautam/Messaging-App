@@ -14,7 +14,7 @@ const PeopleCard = ({ data }: PeopleCardProp) => {
   const userInfo = useSelector((store: IStore) => store.userInfo);
 
   const handleSend = () => {
-    addFriendApi(token, data.name, data._id, dispatch, data.photo);
+    addFriendApi(token, userInfo.name, data._id, dispatch, data.photo);
   };
 
   return (
