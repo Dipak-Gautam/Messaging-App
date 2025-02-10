@@ -8,6 +8,7 @@ import { TfiFaceSad } from "react-icons/tfi";
 import { IRequestProp } from "../../../Schema/Request/addFriend.schema";
 import PeopleCard from "../../../component/AddFriends/PeopleCard";
 import excludeElements from "../../../component/CustomFunctions/friendFilter";
+import { FaRegFaceSmileBeam } from "react-icons/fa6";
 
 const AddFriends = () => {
   const userData = useSelector((store: IStore) => store.userInfo);
@@ -21,6 +22,7 @@ const AddFriends = () => {
   }, []);
 
   useEffect(() => {
+    if (allUser == undefined || userData == undefined) return;
     setShowUser(excludeElements(allUser, userData?.conversations));
   }, [allUser]);
 
@@ -33,7 +35,7 @@ const AddFriends = () => {
             <Spinner animation="border" variant="light" />
           </div>
         )}
-        {!loading && allUser.length == 0 && (
+        {!loading && showUser.length == 0 && (
           <div className=" flex w-full h-full justify-center items-center text-white ">
             <div className="flex flex-col justify-center items-center gap-3">
               <TfiFaceSad size={40} />
@@ -49,11 +51,25 @@ const AddFriends = () => {
             </div>
           </div>
         )}
-        {!loading && allUser.length != 0 && (
+        {!loading && showUser.length > 1 ? (
           <div className="flex flex-col pt-3 w-full h-full  px-5 gap-3 ">
             {showUser.map((item: IRequestProp) => (
               <PeopleCard key={item._id} data={item} />
             ))}
+          </div>
+        ) : (
+          <div className="flex flex-1 text-white justify-center items-center w-full h-full ">
+            <div className="flex flex-col gap-7">
+              <div className="flex justify-center">
+                <FaRegFaceSmileBeam className="text-7xl font-bold  " />
+              </div>
+              <div className="text-xl font-semibold text-center leading-3">
+                <p>There are no more new users to be friends.</p>
+                <p className="text-base font-normal">
+                  We will let you know if new user join
+                </p>
+              </div>
+            </div>
           </div>
         )}
       </div>

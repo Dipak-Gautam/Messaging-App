@@ -1,69 +1,79 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  mobile: {
-    type: String,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  conversations: [
-    {
-      id: {
-        type: String,
-        required: true,
-      },
-      name: {
-        type: String,
-        required: true,
-      },
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
     },
-  ],
-  requests: [
-    {
-      id: {
-        type: String,
-        required: true,
-      },
-      name: {
-        type: String,
-        required: true,
-      },
-      photo: {
-        type: String,
-      },
+    mobile: {
+      type: String,
     },
-  ],
-  friends: [
-    {
-      id: {
-        type: String,
-        required: true,
-      },
-      name: {
-        type: String,
-        required: true,
-      },
-      photo: {
-        type: String,
-      },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
     },
-  ],
-  token: {
-    type: String,
+    password: {
+      type: String,
+      required: true,
+    },
+    conversations: [
+      {
+        id: {
+          type: String,
+          required: true,
+        },
+        name: {
+          type: String,
+          required: true,
+        },
+        message: {
+          type: String,
+        },
+        activeFlag: {
+          type: Boolean,
+          default: false,
+        },
+      },
+    ],
+    requests: [
+      {
+        id: {
+          type: String,
+          required: true,
+        },
+        name: {
+          type: String,
+          required: true,
+        },
+        photo: {
+          type: String,
+        },
+      },
+    ],
+    friends: [
+      {
+        id: {
+          type: String,
+          required: true,
+        },
+        name: {
+          type: String,
+          required: true,
+        },
+        photo: {
+          type: String,
+        },
+      },
+    ],
+    token: {
+      type: String,
+    },
   },
-});
+  { timestamps: true }
+);
 
 userSchema.pre("save", async function (next) {
   const user = this;

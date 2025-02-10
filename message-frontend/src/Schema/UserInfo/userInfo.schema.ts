@@ -9,4 +9,6 @@ export interface IUserInfo {
   name: string;
   requests: IRequest[];
   _id: string;
+  createdAt: string;
+  updatedAt: string;
 }

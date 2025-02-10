@@ -1,4 +1,3 @@
-import React from "react";
 import { IoPersonAddOutline } from "react-icons/io5";
 import { IRequestProp } from "../../Schema/Request/addFriend.schema";
 import addFriendApi from "../../ApiService/Friends/addFriend.api";

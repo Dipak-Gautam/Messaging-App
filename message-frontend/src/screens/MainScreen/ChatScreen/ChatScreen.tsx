@@ -11,7 +11,7 @@ const ChatScreen = () => {
       }}
     >
       <TopBanner />
-      <div className="flex-1">
+      <div className="flex-1  h-[calc(100vh-300px)]">
         <ConversationContainer />
       </div>
       <SendMessageContainer />

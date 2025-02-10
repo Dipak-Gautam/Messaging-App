@@ -47,7 +47,7 @@ router.post("/accept", jwtAuthMiddleWare, async (req, res) => {
   } catch (error) {
     console.log("request", error);
     res.status(500).json({ message: "internal server error", error: error });
-  }
+  } 
 });
 
 module.exports = router;
