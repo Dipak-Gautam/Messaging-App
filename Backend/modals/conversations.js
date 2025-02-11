@@ -36,6 +36,9 @@ const conversationSchema = new mongoose.Schema({
       },
     },
   ],
+  participant: {
+    type: [String],
+  },
 });
 
 const Conversation = mongoose.model("Conversation", conversationSchema);

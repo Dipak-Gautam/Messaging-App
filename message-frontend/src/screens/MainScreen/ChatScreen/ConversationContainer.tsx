@@ -30,7 +30,7 @@ const ConversationContainer = () => {
   }, [id, token]);
 
   useEffect(() => {
-    if (lastMessage.current == convData?.messages.at(-1).message) {
+    if (lastMessage.current == convData?.messages?.at(-1)?.message) {
       return;
     }
     lastMessage.current = convData?.messages.at(-1).message;

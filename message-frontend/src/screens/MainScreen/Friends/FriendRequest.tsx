@@ -10,7 +10,6 @@ const FriendRequest = () => {
   return (
     <div className="flex flex-1 flex-col ">
       <RequestTopBanner />
-
       {userData && userData.requests.length != 0 ? (
         <div className="flex flex-col  flex-1 gap-2 my-3 px-3">
           {userData?.requests?.map((item) => (

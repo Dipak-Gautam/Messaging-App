@@ -26,14 +26,11 @@ router.post("/accept", jwtAuthMiddleWare, async (req, res) => {
     const data = req.body;
     const ownId = req.user.id;
     const ConversationsTemp = {
-      type: "message",
-      sender: {
-        id: ownId,
-        name: "From cosmic communication",
-      },
-      message: "HEllo",
+      participant: [data.id, ownId],
     };
     const newConversation = new Conversation(ConversationsTemp);
+    newConversation.participant = [ownId, data.id];
+    await newConversation.save();
     const conResponse = await newConversation.save();
     const own = await User.findById(ownId);
     const friend = await User.findById(data.id);
@@ -47,7 +44,7 @@ router.post("/accept", jwtAuthMiddleWare, async (req, res) => {
   } catch (error) {
     console.log("request", error);
     res.status(500).json({ message: "internal server error", error: error });
-  } 
+  }
 });
 
 module.exports = router;
