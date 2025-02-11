@@ -45,4 +45,18 @@ router.post("/message", jwtAuthMiddleWare, async (req, res) => {
   }
 });
 
+router.get("/chats", jwtAuthMiddleWare, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const user = await User.findById(userId).select("conversations");
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.status(200).json(user.conversations);
+  } catch (error) {
+    console.log("message/chat", error);
+    res.status(500).json(error);
+  }
+});
+
 module.exports = router;
