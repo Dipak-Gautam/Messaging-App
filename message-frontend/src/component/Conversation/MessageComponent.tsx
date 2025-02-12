@@ -16,9 +16,9 @@ const MessageComponent = ({ data }: MessageComponent) => {
       <div
         className={` ${
           userInfo._id == data.sender.id ? "bg-green-600" : "bg-indigo-500"
-        } rounded-xl p-2 px-3  `}
+        } rounded-xl p-2 px-3 break-words `}
       >
-        <p className="p-0 m-0 my-auto">{data.message}</p>
+        <p className="p-0 m-0 my-auto max-w-[700px]">{data.message}</p>
       </div>
       <p
         className={`text-slate-500 text-xs  m-0 p-0 mt-1 ${

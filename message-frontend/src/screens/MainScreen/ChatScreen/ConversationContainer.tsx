@@ -8,6 +8,7 @@ import {
   IReceivedMessage,
 } from "../../../Schema/Message/receivedMessage.schema";
 import MessageComponent from "../../../component/Conversation/MessageComponent";
+import deactivateFlagApi from "../../../ApiService/Message/deactivateFlag.Api";
 
 const ConversationContainer = () => {
   const location = useLocation();
@@ -23,6 +24,7 @@ const ConversationContainer = () => {
     if (!id || !token) return;
     const fetchMessages = () => {
       getMessageApi(token, id, setConvData, setLoading);
+      deactivateFlagApi(token, id);
     };
     fetchMessages();
     const intervalId = setInterval(fetchMessages, 2000);
