@@ -8,17 +8,6 @@ interface MessageComponent {
 const MessageComponent = ({ data }: MessageComponent) => {
   const userInfo = useSelector((store: IStore) => store.userInfo);
 
-  function base64ToImage(base64String: string, containerId: any) {
-    const img = new Image();
-    img.src = `data:image/png;base64,${base64String}`;
-    const container = document.getElementById(containerId);
-    if (container) {
-      container.appendChild(img);
-    } else {
-      console.error("Container not found!");
-    }
-  }
-
   return (
     <>
       {data.type == "message" ? (

@@ -32,7 +32,9 @@ const MainNav = () => {
               className={`p-2 rounded-full ${
                 indicator == 1 && "bg-slate-600"
               } `}
-              onClick={() => setIndicator(1)}
+              onClick={() => {
+                navigate("/"), setIndicator(1);
+              }}
             >
               <BsChatSquareText
                 size={23}
