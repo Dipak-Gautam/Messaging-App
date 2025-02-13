@@ -38,7 +38,7 @@ const MessageComponent = ({ data }: MessageComponent) => {
           } mx-4`}
         >
           <img
-            src={`data:image/png;base64,${data.message}`}
+            src={`${data.message}`}
             alt="Sent Content"
             className="rounded-xl max-w-full h-auto"
           />

@@ -55,7 +55,9 @@ router.post(
   async (req, res) => {
     try {
       const { convId, type, status, senderId, senderName, photo } = req.body;
-      const photoBase64 = req.file ? req.file.buffer.toString("base64") : "";
+      const photoBase64 = req.file
+        ? `data:image/jpeg;base64,${req.file.buffer.toString("base64")}`
+        : photo;
       const Con = await Conversation.findById(convId);
       let receiverId;
       senderId == Con.participant[0]
@@ -76,7 +78,7 @@ router.post(
           id: senderId,
           name: senderName,
         },
-        message: photoBase64,
+        message: `${photoBase64}`,
       };
       Con.messages.push(tempMessage);
       await Con.save();
