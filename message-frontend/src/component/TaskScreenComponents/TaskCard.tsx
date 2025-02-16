@@ -29,7 +29,7 @@ const TaskCard = ({ data, setTask }: TaskCardProp) => {
         </div>
         <div className=" flex flex-col gap-1">
           <div
-            className={` text-sm p-1 px-2 ${
+            className={` text-sm p-1 px-2 min-w-40  ${
               colors[data.status]
             } rounded-xl text-center font-medium cursor-pointer`}
           >

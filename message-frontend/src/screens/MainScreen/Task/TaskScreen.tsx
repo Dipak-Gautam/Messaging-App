@@ -3,7 +3,7 @@ import TaskBanner from "../../../component/TaskScreenComponents/TaskBanner";
 import TaskCard from "../../../component/TaskScreenComponents/TaskCard";
 import { Spinner } from "react-bootstrap";
 import getTaskApi from "../../../ApiService/Task/getTaskApi";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { IStore } from "../../../Schema/Store/store.schema";
 import { ITask } from "../../../Schema/Task/task.schema";
 import { TfiFaceSad } from "react-icons/tfi";
