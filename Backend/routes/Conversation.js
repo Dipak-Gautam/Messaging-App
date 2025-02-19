@@ -132,4 +132,28 @@ router.post("/deactivate", jwtAuthMiddleWare, async (req, res) => {
   }
 });
 
+router.post("/group-chat", jwtAuthMiddleWare, async (req, res) => {
+  try {
+    const id = req.user.id;
+    const { groupName } = req.body;
+    const user = await User.findById(id);
+    const newConversation = new Conversation({
+      name: groupName,
+      conversationType: "group",
+      participant: [id],
+    });
+    const response = await newConversation.save();
+    user.conversations.push({
+      id: response.id,
+      name: groupName,
+      activeFlag: true,
+    });
+    await user.save();
+    res.status(200).json({ message: "group created sucessfull" });
+  } catch (error) {
+    console.log("message/groupChat", error);
+    res.status(500).json(error);
+  }
+});
+
 module.exports = router;

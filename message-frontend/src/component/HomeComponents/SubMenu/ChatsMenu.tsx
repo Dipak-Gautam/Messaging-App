@@ -22,28 +22,30 @@ const ChatsMenu = () => {
     return () => clearInterval(interval);
   }, [token, dispatch]);
   return (
-    <div className="w-full h-full   p-2 py-4 bg-[#2d3031]">
-      <ChatMenuTopBanner />
-      <div className="mt-2 px-2">
-        {userInfo?.conversations?.map((item) => (
-          <div
-            onClick={() =>
-              navigate("/home/chats", {
-                state: { id: item.id, name: item.name },
-              })
-            }
-            className={`my-3 `}
-            key={item.id}
-          >
-            <PeopleList
-              message={item.message}
-              name={item.name}
-              active={item.activeFlag}
-            />
-          </div>
-        ))}
+    <>
+      <div className="w-full h-full   p-2 py-4 bg-[#2d3031]">
+        <ChatMenuTopBanner />
+        <div className="mt-2 px-2">
+          {userInfo?.conversations?.map((item) => (
+            <div
+              onClick={() =>
+                navigate("/home/chats", {
+                  state: { id: item.id, name: item.name },
+                })
+              }
+              className={`my-3 `}
+              key={item.id}
+            >
+              <PeopleList
+                message={item.message}
+                name={item.name}
+                active={item.activeFlag}
+              />
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
