@@ -19,8 +19,6 @@ const TopBanner = () => {
     getInfoApi(token, id, setConvInfo);
   }, [id]);
 
-  console.log("conversation", convInfo);
-
   return (
     <div className="bg-slate-800 p-4 px-5 flex justify-between gap-4 items-center">
       <div className="bg-pink-500  rounded-full w-10 h-10 flex justify-center items-center">
@@ -39,7 +37,7 @@ const TopBanner = () => {
           className="text-gray-400"
           onClick={() => {
             convInfo?.conversationType == "group" &&
-              navigate("/home/add-member");
+              navigate("/home/add-member", { state: { convInfo: convInfo } });
           }}
         />
       </div>

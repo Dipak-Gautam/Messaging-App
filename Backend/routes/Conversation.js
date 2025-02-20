@@ -167,4 +167,26 @@ router.put("/info", jwtAuthMiddleWare, async (req, res) => {
   }
 });
 
+router.post("/add-member", jwtAuthMiddleWare, async (req, res) => {
+  try {
+    const { convId, memberId, groupName } = req.body;
+    const conv = await Conversation.findById(convId);
+    conv.participant.push(memberId);
+    const user = await User.findById(memberId);
+    const tempMessage = {
+      id: convId,
+      name: groupName,
+      message: "Welcome to group",
+      activeFlag: true,
+    };
+    user.conversations.push(tempMessage);
+    await conv.save();
+    await user.save();
+    res.status(200).json({ message: "member added sucessfully" });
+  } catch (error) {
+    console.log("message/add-member", error);
+    res.status(500).json(error);
+  }
+});
+
 module.exports = router;

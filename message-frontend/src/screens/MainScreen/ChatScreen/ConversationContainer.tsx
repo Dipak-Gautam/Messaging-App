@@ -35,7 +35,7 @@ const ConversationContainer = () => {
     if (lastMessage.current == convData?.messages?.at(-1)?.message) {
       return;
     }
-    lastMessage.current = convData?.messages.at(-1).message;
+    lastMessage.current = convData?.messages.at(-1)?.message;
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
