@@ -45,7 +45,7 @@ const ConversationContainer = () => {
     <div className="w-full h-[calc(100vh-150px)] flex flex-col border-red-400 p-2">
       {convData && (
         <div className="text-white w-full flex flex-col gap-3 flex-grow overflow-y-auto">
-          {convData.messages.map((item: IMessages) => (
+          {convData?.messages.map((item: IMessages) => (
             <MessageComponent data={item} key={item._id} />
           ))}
 

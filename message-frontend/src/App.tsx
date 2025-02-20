@@ -15,6 +15,7 @@ import Setting from "./screens/MainScreen/Settings/Setting";
 import TaskScreen from "./screens/MainScreen/Task/TaskScreen";
 import HomeScreen from "./screens/MainScreen/HomeScreen/HomeScreen";
 import GroupChat from "./component/GroupChat/GroupChat";
+import AddMemberScreen from "./component/GroupChat/components/AddMemberScreen";
 
 const router = createBrowserRouter([
   { path: "/", element: <Index /> },
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
       { path: "/home/friend-request", element: <FriendRequest /> },
       { path: "home/setting", element: <Setting /> },
       { path: "home/task", element: <TaskScreen /> },
-      // { path: "/home/group-chat", element: <GroupChat /> },
+      { path: "/home/add-member", element: <AddMemberScreen /> },
     ],
   },
 ]);

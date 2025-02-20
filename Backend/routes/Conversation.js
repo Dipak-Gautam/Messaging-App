@@ -156,4 +156,15 @@ router.post("/group-chat", jwtAuthMiddleWare, async (req, res) => {
   }
 });
 
+router.put("/info", jwtAuthMiddleWare, async (req, res) => {
+  try {
+    const { convId } = req.body;
+    const conv = await Conversation.findById(convId);
+    res.status(200).json({ message: "Data fetch sucessfully", data: conv });
+  } catch (error) {
+    console.log("message/info", error);
+    res.status(500).json(error);
+  }
+});
+
 module.exports = router;

@@ -1,15 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { HiDotsVertical } from "react-icons/hi";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import getInfoApi from "../../ApiService/GroupChat/getInfo.api";
+import { useSelector } from "react-redux";
+import { IStore } from "../../Schema/Store/store.schema";
+import { IConversationInfo } from "../../Schema/Conversation/conversation.schema";
 
 const TopBanner = () => {
   const location = useLocation();
+  const token = useSelector((store: IStore) => store.token);
   const { name } = location.state || {};
   const { id } = location.state || {};
+  const [convInfo, setConvInfo] = useState<IConversationInfo>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id == null) return;
-  }, []);
+    getInfoApi(token, id, setConvInfo);
+  }, [id]);
+
+  console.log("conversation", convInfo);
 
   return (
     <div className="bg-slate-800 p-4 px-5 flex justify-between gap-4 items-center">
@@ -24,7 +34,14 @@ const TopBanner = () => {
         </div>
       </div>
       <div>
-        <HiDotsVertical size={25} className="text-gray-400" />
+        <HiDotsVertical
+          size={25}
+          className="text-gray-400"
+          onClick={() => {
+            convInfo?.conversationType == "group" &&
+              navigate("/home/add-member");
+          }}
+        />
       </div>
     </div>
   );
