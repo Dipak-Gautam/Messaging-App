@@ -6,12 +6,15 @@ import { IStore } from "../../../Schema/Store/store.schema";
 import filterArrayById from "../../CustomFunctions/addFriendFilter";
 import { Spinner } from "react-bootstrap";
 import AddMemberCard from "./AddMemberCard";
+import { useLocation } from "react-router-dom";
 
 const AddMemberComponent = () => {
   const [allUser, setAllUser] = useState<IRequestProp[]>([]);
   const token = useSelector((store: IStore) => store.token);
   const [loading, setLoading] = useState(false);
   const [showUser, setShowUser] = useState<IRequestProp[]>([]);
+  const location = useLocation();
+  const { convInfo } = location.state || {};
   useEffect(() => {
     setLoading(true);
     getAllUser(token, setLoading, setAllUser);
@@ -19,7 +22,7 @@ const AddMemberComponent = () => {
 
   useEffect(() => {
     if (allUser == undefined) return;
-    setShowUser(filterArrayById(allUser, ["67aaf543902bbe7d554c36b9"]));
+    setShowUser(filterArrayById(allUser, convInfo.participant));
   }, [allUser]);
 
   return (
@@ -30,9 +33,17 @@ const AddMemberComponent = () => {
         </div>
       ) : (
         <div className=" h-full w-full  ">
-          {showUser.map((item) => (
-            <AddMemberCard key={item._id} data={item} />
-          ))}
+          {showUser.length != 0 ? (
+            <>
+              {showUser.map((item) => (
+                <AddMemberCard key={item._id} data={item} />
+              ))}
+            </>
+          ) : (
+            <div className="text-white text-center font-medium text-lg">
+              No members to add
+            </div>
+          )}
         </div>
       )}
     </div>

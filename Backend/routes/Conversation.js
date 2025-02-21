@@ -27,20 +27,34 @@ router.post("/", jwtAuthMiddleWare, async (req, res) => {
   try {
     const data = req.body;
     const Con = await Conversation.findById(req.body.convId);
-    let receiverId;
-    data.message.sender.id == Con.participant[0]
-      ? (receiverId = Con.participant[1])
-      : (receiverId = Con.participant[0]);
-    const receiver = await User.findById(receiverId);
-    const tempArray = updateArrayWithMessage(
-      receiver.conversations,
-      data.convId,
-      data.message.message
-    );
-    receiver.conversations = tempArray;
     Con.messages.push(data.message);
     await Con.save();
-    await receiver.save();
+
+    Con.participant.map(async (item) => {
+      if (data.message.sender.id != item) {
+        const receiver = await User.findById(item);
+        const tempArray = updateArrayWithMessage(
+          receiver.conversations,
+          data.convId,
+          data.message.message
+        );
+        receiver.conversations = tempArray;
+        await receiver.save();
+      }
+    });
+
+    // let receiverId;
+    // data.message.sender.id == Con.participant[0]
+    //   ? (receiverId = Con.participant[1])
+    //   : (receiverId = Con.participant[0]);
+    // const receiver = await User.findById(receiverId);
+    // const tempArray = updateArrayWithMessage(
+    //   receiver.conversations,
+    //   data.convId,
+    //   data.message.message
+    // );
+    // receiver.conversations = tempArray;
+    // await receiver.save();
     res.status(200).json("message sent");
   } catch (error) {
     console.log("message/push", error);
@@ -59,18 +73,6 @@ router.post(
         ? `data:image/jpeg;base64,${req.file.buffer.toString("base64")}`
         : photo;
       const Con = await Conversation.findById(convId);
-      let receiverId;
-      senderId == Con.participant[0]
-        ? (receiverId = Con.participant[1])
-        : (receiverId = Con.participant[0]);
-      const receiver = await User.findById(receiverId);
-      const tempArray = updateArrayWithMessage(
-        receiver.conversations,
-        convId,
-        "photo"
-      );
-      receiver.conversations = tempArray;
-      await receiver.save();
       const tempMessage = {
         type: type,
         status: status,
@@ -82,6 +84,33 @@ router.post(
       };
       Con.messages.push(tempMessage);
       await Con.save();
+
+      Con.participant.map(async (item) => {
+        if (senderId != item) {
+          const receiver = await User.findById(item);
+          const tempArray = updateArrayWithMessage(
+            receiver.conversations,
+            convId,
+            "photo"
+          );
+          receiver.conversations = tempArray;
+          await receiver.save();
+        }
+      });
+
+      // let receiverId;
+      // senderId == Con.participant[0]
+      //   ? (receiverId = Con.participant[1])
+      //   : (receiverId = Con.participant[0]);
+      // const receiver = await User.findById(receiverId);
+      // const tempArray = updateArrayWithMessage(
+      //   receiver.conversations,
+      //   convId,
+      //   "photo"
+      // );
+      // receiver.conversations = tempArray;
+      // await receiver.save();
+
       res.status(200).json("message sent");
     } catch (error) {
       console.log("message/push", error);
