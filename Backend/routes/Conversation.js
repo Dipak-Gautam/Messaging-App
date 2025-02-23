@@ -97,20 +97,6 @@ router.post(
           await receiver.save();
         }
       });
-
-      // let receiverId;
-      // senderId == Con.participant[0]
-      //   ? (receiverId = Con.participant[1])
-      //   : (receiverId = Con.participant[0]);
-      // const receiver = await User.findById(receiverId);
-      // const tempArray = updateArrayWithMessage(
-      //   receiver.conversations,
-      //   convId,
-      //   "photo"
-      // );
-      // receiver.conversations = tempArray;
-      // await receiver.save();
-
       res.status(200).json("message sent");
     } catch (error) {
       console.log("message/push", error);

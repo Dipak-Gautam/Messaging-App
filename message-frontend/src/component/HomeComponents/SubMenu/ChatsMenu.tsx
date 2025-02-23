@@ -23,7 +23,7 @@ const ChatsMenu = () => {
   }, [token, dispatch]);
   return (
     <>
-      <div className="w-full h-full   p-2 py-4 bg-[#2d3031]">
+      <div className="w-full h-full px-3 md:px-0  p-2 py-4 bg-[#2d3031]">
         <ChatMenuTopBanner />
         <div className="mt-2 px-2">
           {userInfo?.conversations?.map((item) => (
