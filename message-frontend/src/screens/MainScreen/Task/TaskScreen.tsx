@@ -17,7 +17,7 @@ const TaskScreen = () => {
   }, []);
 
   return (
-    <div className="text-white  flex flex-1  flex-col">
+    <div className="text-white  flex flex-1  flex-col h-[100vh]">
       <TaskBanner />
       {loading && (
         <div className="flex-1 flex  justify-center items-center">
@@ -41,7 +41,7 @@ const TaskScreen = () => {
         </div>
       )}
       {!loading && task.length != 0 && (
-        <div className="flex-1 px-3 pt-3 flex flex-col gap-2">
+        <div className="flex-1 px-3 pt-3 flex flex-col  overflow-y-auto  ">
           {task.map((item) => (
             <TaskCard key={item._id} data={item} setTask={setTask} />
           ))}

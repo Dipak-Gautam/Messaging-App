@@ -20,7 +20,7 @@ const TaskCard = ({ data, setTask }: TaskCardProp) => {
   return (
     <>
       <div
-        className="border-1 border-slate-500 p-2 px-4 rounded-xl hover:shadow-md hover:shadow-white/50 flex gap-3"
+        className="border-1 border-slate-500 p-2 px-4 rounded-xl hover:shadow-md hover:shadow-white/50 flex flex-col md:flex-row gap-3 mb-4"
         onClick={() => setModalShow(true)}
       >
         <div className="flex-1 flex flex-col justify-between ">
