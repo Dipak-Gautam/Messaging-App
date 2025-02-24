@@ -22,7 +22,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="md:w-[50%] flex flex-col items-center pt-5 my-auto">
+    <div className=" w-full md:w-[50%] flex flex-col items-center pt-5 my-auto ">
       <div className=" text-xl sm:text-2xl font-bold  text-white mb-5">
         Login
       </div>

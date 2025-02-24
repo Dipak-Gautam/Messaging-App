@@ -26,7 +26,7 @@ const Login = () => {
           backgroundSize: "cover",
         }}
       >
-        <div className=" flex flex-1 bg-gradient-to-r from-black/50 via-dark to-dark z-10 px-5 py-5 justify-center  ">
+        <div className=" flex flex-1 bg-gradient-to-r from-black/50 via-dark to-dark z-10 md:px-5 py-5 justify-center  ">
           <div className="hidden md:flex w-[50%]">
             <WelcomeBack />
           </div>

@@ -23,6 +23,6 @@ app.use("/request", jwtAuthMiddleWare, requestRoute);
 const taskRoute = require("./routes/TaskRoutes");
 app.use("/task", jwtAuthMiddleWare, taskRoute);
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
   console.log("listening on port 3000");
 });

@@ -26,11 +26,11 @@ const SignupForm = () => {
 
   return (
     <div className="md:w-[50%] flex flex-col items-center my-auto  ">
-      <div className=" text-xl md:text-xl  font-bold  text-white mb-5">
+      <div className=" text-xl md:text-xl  font-bold  text-white mb-5 mt-2">
         Create Account
       </div>
 
-      <div className=" flex  flex-col  gap-1 sm:gap-1 mb-6 sm:w-72  overflow-auto overflow-y-auto px-5">
+      <div className=" flex  flex-col  gap-1 sm:gap-1 mb-6 sm:w-72  overflow-auto overflow-y-auto px-3 md:px-5">
         <TextInputControllers
           label="Full Name"
           name="name"
