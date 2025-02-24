@@ -8,7 +8,7 @@ const FriendRequest = () => {
   const userData = useSelector((store: IStore) => store.userInfo);
 
   return (
-    <div className="flex flex-1 flex-col ">
+    <div className="flex flex-1 flex-col h-full ">
       <RequestTopBanner />
       {userData && userData.requests.length != 0 ? (
         <div className="flex flex-col  flex-1 gap-2 my-3 px-3">
@@ -17,7 +17,7 @@ const FriendRequest = () => {
           ))}
         </div>
       ) : (
-        <div className="flex-1 flex flex-col  justify-center items-center text-white">
+        <div className="flex-1 flex flex-col  justify-center items-center text-white ">
           <FaUserSlash className="text-7xl text-white" />
           <div className="my-3 text-xl ">No Request found</div>
         </div>

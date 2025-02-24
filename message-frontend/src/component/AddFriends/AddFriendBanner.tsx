@@ -1,12 +1,23 @@
 import React from "react";
+import { IoArrowBack } from "react-icons/io5";
 import { LuUserRoundSearch } from "react-icons/lu";
 import { MdSearch } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const AddFriendBanner = () => {
+  const navigate = useNavigate();
   return (
     <div className="bg-slate-700 p-3 text-white flex justify-between">
-      <div className="text-white text-lg font-semibold">Add Friends</div>
-      <div className="flex justify-center items-center gap-3">
+      <div className="text-white text-lg font-semibold flex gap-2 items-center">
+        <div>
+          <IoArrowBack
+            className=" text-white text-xl md:hidden"
+            onClick={() => navigate("/")}
+          />
+        </div>
+        Add Friends
+      </div>
+      <div className="hidden md:flex justify-center items-center gap-3">
         <LuUserRoundSearch size={25} />
         <div>
           <input

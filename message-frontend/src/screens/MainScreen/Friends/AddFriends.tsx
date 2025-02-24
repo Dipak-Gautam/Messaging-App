@@ -27,9 +27,9 @@ const AddFriends = () => {
   }, [allUser]);
 
   return (
-    <div className="flex flex-col  bg-sDark flex-1 ">
+    <div className="flex flex-col  bg-sDark flex-1 h-full">
       <AddFriendBanner />
-      <div className=" flex-1 overflow-auto">
+      <div className=" flex flex-1 overflow-auto  ">
         {loading && (
           <div className="flex-1 justify-center items-center w-full h-full">
             <Spinner animation="border" variant="light" />
@@ -41,7 +41,7 @@ const AddFriends = () => {
               <TfiFaceSad size={40} />
               <p>Oops!, Something went wrong</p>
               <div
-                className="bg-gPrimary rounded-2xl p-2 text-center w-60 cursor-pointer hover:bg-green-500"
+                className="bg-gPrimary rounded-2xl p-2 text-center md:w-60 cursor-pointer hover:bg-green-500"
                 onClick={() => {
                   setLoading(true), getAllUser(token, setLoading, setAllUser);
                 }}
@@ -58,14 +58,16 @@ const AddFriends = () => {
             ))}
           </div>
         ) : (
-          <div className="flex flex-1 text-white justify-center items-center w-full h-full ">
-            <div className="flex flex-col gap-7">
+          <div className="flex flex-1 text-white justify-center items-center  ">
+            <div className="flex flex-1 flex-col gap-7">
               <div className="flex justify-center">
-                <FaRegFaceSmileBeam className="text-7xl font-bold  " />
+                <FaRegFaceSmileBeam className=" text-5xl md:text-7xl font-bold  " />
               </div>
-              <div className="text-xl font-semibold text-center leading-3">
-                <p>There are no more new users to be friends.</p>
-                <p className="text-base font-normal">
+              <div className=" flex-1 font-semibold text-center leading-3">
+                <p className="text-sm md:text-xl">
+                  There are no more new users to be friends.
+                </p>
+                <p className="text-xs md:text-base font-normal">
                   We will let you know if new user join
                 </p>
               </div>

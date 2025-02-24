@@ -3,12 +3,21 @@ import { TbMessage2Plus } from "react-icons/tb";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import SuggestOverLay from "../OverLay/SuggestOverLay";
 import { useNavigate } from "react-router-dom";
+import { IoArrowBack } from "react-icons/io5";
 
 const RequestTopBanner = () => {
   const navigate = useNavigate();
   return (
     <div className="bg-slate-700 p-3 text-white flex justify-between">
-      <div className="text-white text-lg font-semibold">Requests</div>
+      <div className="text-white text-lg font-semibold flex gap-2 items-center">
+        <div>
+          <IoArrowBack
+            className=" text-white text-xl md:hidden"
+            onClick={() => navigate("/")}
+          />
+        </div>
+        Requests
+      </div>
       <div className="flex justify-center items-center gap-3">
         <OverlayTrigger
           placement="bottom"
