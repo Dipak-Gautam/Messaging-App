@@ -16,11 +16,11 @@ const GroupChat = ({ ...props }) => {
   return (
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
       <div className="  flex flex-col border border-slate-600 bg-dark p-3 rounded-2xl gap-2 ">
-        <div className="text-center text-white text-xl font-semibold">
+        <div className="text-center text-white text-base md:text-xl font-semibold">
           Create Group Chat
         </div>
-        <div className="flex text-white w-full gap-3 my-3 px-4">
-          <div className="text-lg font-medium">Group Name:</div>
+        <div className="flex text-white w-full gap-3 md:my-3 px-2 md:px-4">
+          <div className=" text-sm md:text-lg font-medium">Group Name:</div>
           <div className="flex   flex-1">
             <input
               ref={groupName}

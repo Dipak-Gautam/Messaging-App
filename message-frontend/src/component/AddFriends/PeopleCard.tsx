@@ -19,24 +19,26 @@ const PeopleCard = ({ data }: PeopleCardProp) => {
   return (
     <>
       <div
-        className={`   border-1 border-gray-500 hover:shadow-md hover:shadow-white/50 p-2 px-4  rounded-2xl w-full text-white flex items-center justify-between gap-3 ${
+        className={`   border-1 border-gray-500 hover:shadow-md hover:shadow-white/50 p-2 md:px-4  rounded-2xl w-full text-white flex items-center justify-between gap-3 ${
           data._id == userInfo._id && "hidden"
         }`}
       >
         <div>
-          <div className="  p-2 text-lg w-12 h-12 bg-pink-500 flex justify-center items-center rounded-full">
+          <div className="hidden md:flex  p-2 text-lg w-12 h-12 bg-pink-500 justify-center items-center rounded-full">
             D
           </div>
         </div>
         <div className="flex-1 leading-6">
-          <p className="m-0 p-0">{data.name}</p>
-          <p className="m-0 p-0 text-slate-400">{data.email}</p>
+          <p className="m-0 p-0 text-xs md:text-base">{data.name}</p>
+          <p className="m-0 p-0 text-slate-400 text-[8px] md:text-base">
+            {data.email}
+          </p>
         </div>
         <div
-          className="flex gap-2  p-1 px-2 rounded-md bg-gPrimary font-semibold hover:border hover:border-gPrimary"
+          className="flex gap-2  p-1 px-2 rounded-md bg-gPrimary font-semibold hover:border hover:border-gPrimary text-xs md:text-base"
           onClick={handleSend}
         >
-          <IoPersonAddOutline size={20} />
+          <IoPersonAddOutline className=" text-lg md:text-2xl" />
           <div> Send Request</div>
         </div>
       </div>

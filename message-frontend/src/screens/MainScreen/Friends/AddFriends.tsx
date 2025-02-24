@@ -52,7 +52,7 @@ const AddFriends = () => {
           </div>
         )}
         {!loading && showUser.length > 1 ? (
-          <div className="flex flex-col pt-3 w-full h-full  px-5 gap-3 ">
+          <div className="flex flex-col pt-3 w-full h-full px-2 md:px-5 gap-3 ">
             {showUser.map((item: IRequestProp) => (
               <PeopleCard key={item._id} data={item} />
             ))}

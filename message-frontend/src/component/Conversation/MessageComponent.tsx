@@ -14,17 +14,19 @@ const MessageComponent = ({ data }: MessageComponent) => {
         <div
           className={`  max-w-[60%] w-fit text-lg ${
             userInfo._id == data.sender.id ? "self-end" : "self-start"
-          } mx-4 `}
+          } mx-2 md:mx-4 `}
         >
           <div
             className={` ${
               userInfo._id == data.sender.id ? "bg-green-600" : "bg-indigo-500"
             } rounded-xl p-2 px-3 break-words `}
           >
-            <p className="p-0 m-0 my-auto max-w-[700px]">{data.message}</p>
+            <p className="p-0 m-0 my-auto max-w-[700px] text-sm md:text-base">
+              {data.message}
+            </p>
           </div>
           <p
-            className={`text-slate-500 text-xs  m-0 p-0 mt-1 ${
+            className={`text-slate-500 text-[10px] md:text-xs  m-0 p-0 md:mt-1 ${
               userInfo._id == data.sender.id ? "text-right" : "text-left"
             }`}
           >
