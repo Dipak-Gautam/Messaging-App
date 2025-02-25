@@ -7,6 +7,7 @@ const fs = require("fs");
 
 const router = express.Router();
 
+// Storage setup for files (including audio)
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadPath = "uploads/";
@@ -25,6 +26,7 @@ const upload = multer({
   limits: { fileSize: 50 * 1024 * 1024 }, // Limit file size to 50MB
 });
 
+// 📂 General File Upload Route
 router.post(
   "/upload/:conversationId",
   upload.single("file"),
@@ -46,22 +48,15 @@ router.post(
 
       await newFile.save();
 
-      let messageType = "file";
-      if (req.file.mimetype.startsWith("audio")) messageType = "audio";
-      else if (req.file.mimetype.startsWith("video")) messageType = "video";
-      else if (req.file.mimetype.startsWith("image")) messageType = "image";
-      else if (req.file.mimetype.includes("pdf")) messageType = "pdf";
-      else if (req.file.mimetype.includes("word")) messageType = "document";
-
-      await Conversation.findByIdAndUpdate(conversationId, {
-        $push: {
-          messages: {
-            type: messageType,
-            fileId: newFile._id,
-            message: messageType,
-          },
-        },
-      });
+      // await Conversation.findByIdAndUpdate(conversationId, {
+      //   $push: {
+      //     messages: {
+      //       type: "file",
+      //       fileId: newFile._id,
+      //       message: "File uploaded",
+      //     },
+      //   },
+      // });
 
       res
         .status(201)
@@ -73,6 +68,54 @@ router.post(
   }
 );
 
+// 🔊 Audio File Upload Route (Same Collection)
+router.post(
+  "/upload/audio/:conversationId",
+  upload.single("audio"),
+  async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ message: "No audio file uploaded" });
+      }
+
+      const { conversationId } = req.params;
+      const { senderId, senderName } = req.body;
+
+      const newFile = new File({
+        filename: req.file.filename,
+        fileType: req.file.mimetype,
+        filePath: req.file.path,
+        size: req.file.size,
+        conversationId,
+      });
+
+      await newFile.save();
+
+      await Conversation.findByIdAndUpdate(conversationId, {
+        $push: {
+          messages: {
+            type: "audio",
+            fileId: newFile._id,
+            message: "Audio message",
+            sender: {
+              id: senderId,
+              name: senderName,
+            },
+          },
+        },
+      });
+
+      res
+        .status(201)
+        .json({ message: "Audio uploaded successfully", file: newFile });
+    } catch (error) {
+      console.error("Error uploading audio:", error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  }
+);
+
+// 📥 Get File (Including Audio)
 router.get("/:fileId", async (req, res) => {
   try {
     const file = await File.findById(req.params.fileId);
@@ -86,6 +129,7 @@ router.get("/:fileId", async (req, res) => {
   }
 });
 
+// ❌ Delete File (Including Audio)
 router.delete("/:fileId", async (req, res) => {
   try {
     const file = await File.findById(req.params.fileId);

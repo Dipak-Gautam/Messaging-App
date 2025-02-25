@@ -1,8 +1,16 @@
 import React, { useState, useRef } from "react";
 import { IoMdCloseCircle } from "react-icons/io";
 import Modal from "react-bootstrap/Modal";
+import { useSelector } from "react-redux";
+import { IStore } from "../../Schema/Store/store.schema";
+import { mainEndPoint } from "../../ApiService/EndPoint/endpoint";
 
 const AudioMessage = ({ ...props }) => {
+  const token = useSelector((store: IStore) => store.token);
+  const conversationId = props.id;
+  const userInfo = useSelector((store: IStore) => store.userInfo);
+  // console.log("userInfo", userInfo);
+
   const [recording, setRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
   const [audioURL, setAudioURL] = useState<string | null>(null);
@@ -55,8 +63,11 @@ const AudioMessage = ({ ...props }) => {
 
   // 📤 Send Audio to Backend
   const handleSend = async () => {
-    const formData = new FormData();
+    if (!conversationId) {
+      return alert("Conversation ID is missing!");
+    }
 
+    const formData = new FormData();
     if (selectedFile) {
       formData.append("audio", selectedFile);
     } else if (audioBlob) {
@@ -64,29 +75,48 @@ const AudioMessage = ({ ...props }) => {
     } else {
       return alert("No audio selected or recorded!");
     }
+    formData.append("senderId", userInfo._id);
+    formData.append("senderName", userInfo.name);
 
     try {
-      const response = await fetch("http://localhost:5000/upload-audio", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        `${mainEndPoint}/file/upload/audio/${conversationId}`,
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const data = await response.json();
-      alert(data.message);
+      if (response.ok) {
+        props.onHide();
+        setAudioBlob(null);
+        setAudioURL(null);
+        setSelectedFile(null);
+      } else {
+        alert(`Error: ${data.message}`);
+      }
     } catch (error) {
       console.error("Error uploading audio:", error);
+      alert("Failed to upload audio.");
     }
   };
 
   return (
     <Modal {...props} size="sm" centered>
       <div className="bg-dark rounded-xl flex flex-col p-4 gap-4">
+        {/* Close Button */}
         <div
           onClick={props.onHide}
-          className="absolute -top-9 right-0 bg-white rounded-full"
+          className="absolute -top-9 right-0 bg-white rounded-full cursor-pointer"
         >
           <IoMdCloseCircle className="text-red-500 font-bold text-3xl" />
         </div>
+
+        {/* Header */}
         <div className="text-white font-bold text-2xl text-center border-b-2 pb-2">
           Send Audio
         </div>
@@ -112,8 +142,8 @@ const AudioMessage = ({ ...props }) => {
 
         {/* 📁 File Upload Input */}
         <div className="flex justify-center">
-          <label className="flex ">
-            <div className="text-white bg-gray-500  px-2 py-1 rounded-lg hover:bg-gray-600">
+          <label className="flex cursor-pointer">
+            <div className="text-white bg-gray-500 px-2 py-1 rounded-lg hover:bg-gray-600">
               Choose file
             </div>
             <input

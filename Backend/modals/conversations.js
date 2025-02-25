@@ -17,6 +17,9 @@ const conversationSchema = new mongoose.Schema({
         enum: ["hidden", "visible"],
         default: "visible",
       },
+      fileId: {
+        type: String,
+      },
       sender: {
         id: {
           type: String,

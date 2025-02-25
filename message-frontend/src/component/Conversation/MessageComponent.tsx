@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux";
 import { IMessages } from "../../Schema/Message/receivedMessage.schema";
 import { IStore } from "../../Schema/Store/store.schema";
+import { LuAudioLines } from "react-icons/lu";
+import { IoPlay } from "react-icons/io5";
 interface MessageComponent {
   data: IMessages;
 }
@@ -10,7 +12,7 @@ const MessageComponent = ({ data }: MessageComponent) => {
 
   return (
     <>
-      {data.type == "message" ? (
+      {data.type == "message" && (
         <div
           className={`  max-w-[60%] w-fit text-lg ${
             userInfo._id == data.sender.id ? "self-end" : "self-start"
@@ -33,7 +35,8 @@ const MessageComponent = ({ data }: MessageComponent) => {
             {data.sender.name}
           </p>
         </div>
-      ) : (
+      )}
+      {data.type == "photo" && (
         <div
           className={`max-w-[50%] w-fit text-lg ${
             userInfo._id === data.sender.id ? "self-end" : "self-start"
@@ -47,6 +50,32 @@ const MessageComponent = ({ data }: MessageComponent) => {
           <p
             className={`text-slate-500 text-xs m-0 p-0 mt-1 ${
               userInfo._id === data.sender.id ? "text-right" : "text-left"
+            }`}
+          >
+            {data.sender.name}
+          </p>
+        </div>
+      )}
+      {data.type == "audio" && (
+        <div
+          className={`  max-w-[60%] w-fit text-lg ${
+            userInfo._id == data.sender.id ? "self-end" : "self-start"
+          } mx-2 md:mx-4 `}
+        >
+          <div
+            className={` ${
+              userInfo._id == data.sender.id ? "bg-green-600" : "bg-indigo-500"
+            } rounded-xl p-2 px-3 break-words `}
+          >
+            <p className="p-0 m-0 my-auto max-w-[700px] text-xs md:text-2xl flex">
+              <IoPlay />
+              <LuAudioLines /> <LuAudioLines /> <LuAudioLines />
+              <LuAudioLines /> <LuAudioLines /> <LuAudioLines />
+            </p>
+          </div>
+          <p
+            className={`text-slate-500 text-[10px] md:text-xs  m-0 p-0 md:mt-1 ${
+              userInfo._id == data.sender.id ? "text-right" : "text-left"
             }`}
           >
             {data.sender.name}
