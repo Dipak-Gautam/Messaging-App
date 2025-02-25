@@ -16,7 +16,36 @@ const SendPhotoModal = ({ ...props }) => {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        setImage(reader.result as string);
+        const img = new Image();
+        img.src = reader.result as string;
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          const ctx = canvas.getContext("2d");
+          const MAX_WIDTH = 800;
+          const MAX_HEIGHT = 800;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > MAX_WIDTH) {
+              height *= MAX_WIDTH / width;
+              width = MAX_WIDTH;
+            }
+          } else {
+            if (height > MAX_HEIGHT) {
+              width *= MAX_HEIGHT / height;
+              height = MAX_HEIGHT;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          if (ctx) {
+            ctx.drawImage(img, 0, 0, width, height);
+            const compressedImage = canvas.toDataURL("image/jpeg", 0.7);
+            setImage(compressedImage);
+          }
+        };
       };
       reader.readAsDataURL(file);
     }
@@ -26,16 +55,16 @@ const SendPhotoModal = ({ ...props }) => {
     if (image == null) return;
     sendPhotoApi(token, props.id, userInfo._id, userInfo.name, image);
     setImage(null);
-    props.onHide;
+    props.onHide();
   };
 
   return (
     <Modal
       {...props}
-      size="sm"
       aria-labelledby="contained-modal-title-vcenter"
       centered
-      className="overflow-hidden "
+      className="overflow-hidden  "
+      style={{ padding: "20px" }}
     >
       <div className="bg-dark  rounded-xl flex flex-col p-3 gap-4">
         <div

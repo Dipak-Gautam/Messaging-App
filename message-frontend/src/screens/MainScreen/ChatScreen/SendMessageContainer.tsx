@@ -6,9 +6,12 @@ import { IStore } from "../../../Schema/Store/store.schema";
 import { useLocation } from "react-router-dom";
 import { RiImageAddLine } from "react-icons/ri";
 import SendPhotoModal from "../../../component/ChatComponent/SendPhotoModal";
+import AudioMessage from "../../../component/AudioMessage/AudioMessage";
+import { AiTwotoneAudio } from "react-icons/ai";
 
 const SendMessageContainer = () => {
   const [modalShow, setModalShow] = useState(false);
+  const [audioMessage, setAudioMessage] = useState(false);
   const location = useLocation();
   const { id } = location.state || {};
   const messageRef = useRef<HTMLInputElement | null>(null);
@@ -40,10 +43,17 @@ const SendMessageContainer = () => {
 
   return (
     <>
-      <div className="text-white mb-2 px-4  p-2 flex items-center gap-4">
-        <div onClick={() => setModalShow(true)}>
-          <RiImageAddLine className="text-4xl" />
+      <div className="text-white mb-2 px-2 md:px-4  p-2 flex items-center gap-3 md:gap-4">
+        <div className="flex gap-3">
+          <div onClick={() => setModalShow(true)}>
+            <RiImageAddLine className=" text-2xl md:text-4xl" />
+          </div>
+
+          <div onClick={() => setAudioMessage(true)}>
+            <AiTwotoneAudio className="text-2xl md:text-4xl" />
+          </div>
         </div>
+
         <div className="flex-1">
           <input
             ref={messageRef}
@@ -54,12 +64,17 @@ const SendMessageContainer = () => {
           />
         </div>
         <div className="" onClick={handleSend}>
-          <IoMdSend size={30} className="text-green-400 hover:text-green-500" />
+          <IoMdSend className="text-green-400 hover:text-green-500 text-2xl md:text-4xl" />
         </div>
       </div>
       <SendPhotoModal
         show={modalShow}
         onHide={() => setModalShow(false)}
+        id={id}
+      />
+      <AudioMessage
+        show={audioMessage}
+        onHide={() => setAudioMessage(false)}
         id={id}
       />
     </>

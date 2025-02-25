@@ -18,7 +18,6 @@ const updateTaskApi = async (
   setTask: React.Dispatch<React.SetStateAction<ITask[]>>,
   reason?: string
 ) => {
-  console.log("hello from updateTaskApi", token, id, status, reason);
   const formData = {
     id: id,
     status: status,

@@ -35,7 +35,7 @@ const AddFriends = () => {
             <Spinner animation="border" variant="light" />
           </div>
         )}
-        {!loading && showUser.length == 0 && (
+        {/* {loading && showUser.length == 0 && (
           <div className=" flex w-full h-full justify-center items-center text-white ">
             <div className="flex flex-col justify-center items-center gap-3">
               <TfiFaceSad size={40} />
@@ -50,7 +50,7 @@ const AddFriends = () => {
               </div>
             </div>
           </div>
-        )}
+        )} */}
         {!loading && showUser.length > 1 ? (
           <div className="flex flex-col pt-3 w-full h-full px-2 md:px-5 gap-3 ">
             {showUser.map((item: IRequestProp) => (
