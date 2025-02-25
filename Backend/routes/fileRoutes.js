@@ -35,8 +35,8 @@ router.post(
       if (!req.file) {
         return res.status(400).json({ message: "No file uploaded" });
       }
-
       const { conversationId } = req.params;
+      const { senderId, senderName } = req.body;
 
       const newFile = new File({
         filename: req.file.filename,
@@ -48,15 +48,19 @@ router.post(
 
       await newFile.save();
 
-      // await Conversation.findByIdAndUpdate(conversationId, {
-      //   $push: {
-      //     messages: {
-      //       type: "file",
-      //       fileId: newFile._id,
-      //       message: "File uploaded",
-      //     },
-      //   },
-      // });
+      await Conversation.findByIdAndUpdate(conversationId, {
+        $push: {
+          messages: {
+            type: "file",
+            fileId: newFile._id,
+            message: "file",
+            sender: {
+              id: senderId,
+              name: senderName,
+            },
+          },
+        },
+      });
 
       res
         .status(201)
