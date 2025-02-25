@@ -6,10 +6,11 @@ const AudioMessage = ({ ...props }) => {
   const [recording, setRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
   const [audioURL, setAudioURL] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunks = useRef<Blob[]>([]);
 
-  // Start recording
+  // 🎤 Start Recording
   const startRecording = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -25,7 +26,7 @@ const AudioMessage = ({ ...props }) => {
         const audioBlob = new Blob(audioChunks.current, { type: "audio/webm" });
         setAudioBlob(audioBlob);
         setAudioURL(URL.createObjectURL(audioBlob));
-        audioChunks.current = []; // Clear chunks
+        audioChunks.current = [];
       };
 
       mediaRecorderRef.current.start();
@@ -35,7 +36,7 @@ const AudioMessage = ({ ...props }) => {
     }
   };
 
-  // Stop recording
+  // 🛑 Stop Recording
   const stopRecording = () => {
     if (mediaRecorderRef.current) {
       mediaRecorderRef.current.stop();
@@ -43,12 +44,26 @@ const AudioMessage = ({ ...props }) => {
     }
   };
 
-  // Send recorded audio to backend
-  const handleSend = async () => {
-    if (!audioBlob) return alert("No audio recorded!");
+  // 🎵 Handle File Selection
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setSelectedFile(file);
+      setAudioURL(URL.createObjectURL(file));
+    }
+  };
 
+  // 📤 Send Audio to Backend
+  const handleSend = async () => {
     const formData = new FormData();
-    formData.append("audio", audioBlob, "recorded_audio.webm");
+
+    if (selectedFile) {
+      formData.append("audio", selectedFile);
+    } else if (audioBlob) {
+      formData.append("audio", audioBlob, "recorded_audio.webm");
+    } else {
+      return alert("No audio selected or recorded!");
+    }
 
     try {
       const response = await fetch("http://localhost:5000/upload-audio", {
@@ -76,7 +91,8 @@ const AudioMessage = ({ ...props }) => {
           Send Audio
         </div>
 
-        <div className="flex justify-center">
+        {/* 🎤 Recording Buttons */}
+        <div className="flex justify-center gap-3">
           {recording ? (
             <button
               className="bg-red-500 text-white p-2 rounded-lg"
@@ -94,12 +110,29 @@ const AudioMessage = ({ ...props }) => {
           )}
         </div>
 
+        {/* 📁 File Upload Input */}
+        <div className="flex justify-center">
+          <label className="flex ">
+            <div className="text-white bg-gray-500  px-2 py-1 rounded-lg hover:bg-gray-600">
+              Choose file
+            </div>
+            <input
+              type="file"
+              accept="audio/*"
+              className="hidden flex-1"
+              onChange={handleFileChange}
+            />
+          </label>
+        </div>
+
+        {/* 🎵 Audio Preview */}
         {audioURL && (
           <div className="flex justify-center">
             <audio controls src={audioURL}></audio>
           </div>
         )}
 
+        {/* 📤 Send Button */}
         <div
           className="p-2 bg-green-600 rounded-lg text-white font-bold text-base text-center cursor-pointer"
           onClick={handleSend}

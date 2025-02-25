@@ -22,6 +22,8 @@ const requestRoute = require("./routes/requestRoutes");
 app.use("/request", jwtAuthMiddleWare, requestRoute);
 const taskRoute = require("./routes/TaskRoutes");
 app.use("/task", jwtAuthMiddleWare, taskRoute);
+const fileRoute = require("./routes/fileRoutes");
+app.use("/file", jwtAuthMiddleWare, fileRoute);
 
 app.listen(port, "0.0.0.0", () => {
   console.log("listening on port 3000");
