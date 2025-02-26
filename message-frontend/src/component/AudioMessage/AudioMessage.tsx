@@ -9,8 +9,6 @@ const AudioMessage = ({ ...props }) => {
   const token = useSelector((store: IStore) => store.token);
   const conversationId = props.id;
   const userInfo = useSelector((store: IStore) => store.userInfo);
-  // console.log("userInfo", userInfo);
-
   const [recording, setRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
   const [audioURL, setAudioURL] = useState<string | null>(null);
@@ -18,7 +16,6 @@ const AudioMessage = ({ ...props }) => {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunks = useRef<Blob[]>([]);
 
-  // 🎤 Start Recording
   const startRecording = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -44,7 +41,6 @@ const AudioMessage = ({ ...props }) => {
     }
   };
 
-  // 🛑 Stop Recording
   const stopRecording = () => {
     if (mediaRecorderRef.current) {
       mediaRecorderRef.current.stop();
@@ -52,7 +48,6 @@ const AudioMessage = ({ ...props }) => {
     }
   };
 
-  // 🎵 Handle File Selection
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -61,7 +56,6 @@ const AudioMessage = ({ ...props }) => {
     }
   };
 
-  // 📤 Send Audio to Backend
   const handleSend = async () => {
     if (!conversationId) {
       return alert("Conversation ID is missing!");
@@ -108,20 +102,15 @@ const AudioMessage = ({ ...props }) => {
   return (
     <Modal {...props} size="sm" centered>
       <div className="bg-dark rounded-xl flex flex-col p-4 gap-4">
-        {/* Close Button */}
         <div
           onClick={props.onHide}
           className="absolute -top-9 right-0 bg-white rounded-full cursor-pointer"
         >
           <IoMdCloseCircle className="text-red-500 font-bold text-3xl" />
         </div>
-
-        {/* Header */}
         <div className="text-white font-bold text-2xl text-center border-b-2 pb-2">
           Send Audio
         </div>
-
-        {/* 🎤 Recording Buttons */}
         <div className="flex justify-center gap-3">
           {recording ? (
             <button
@@ -139,8 +128,6 @@ const AudioMessage = ({ ...props }) => {
             </button>
           )}
         </div>
-
-        {/* 📁 File Upload Input */}
         <div className="flex justify-center">
           <label className="flex cursor-pointer">
             <div className="text-white bg-gray-500 px-2 py-1 rounded-lg hover:bg-gray-600">
@@ -154,15 +141,11 @@ const AudioMessage = ({ ...props }) => {
             />
           </label>
         </div>
-
-        {/* 🎵 Audio Preview */}
         {audioURL && (
           <div className="flex justify-center">
             <audio controls src={audioURL}></audio>
           </div>
         )}
-
-        {/* 📤 Send Button */}
         <div
           className="p-2 bg-green-600 rounded-lg text-white font-bold text-base text-center cursor-pointer"
           onClick={handleSend}

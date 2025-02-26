@@ -9,6 +9,7 @@ export interface IMessages {
   type: string;
   _id: string;
   sender: sender;
+  fileId: string;
 }
 
 export interface IReceivedMessage {

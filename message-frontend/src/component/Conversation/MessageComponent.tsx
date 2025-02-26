@@ -5,6 +5,8 @@ import { LuAudioLines } from "react-icons/lu";
 import { IoPlay } from "react-icons/io5";
 import { MdOutlineFolderZip } from "react-icons/md";
 import { MdOutlineDownloadForOffline } from "react-icons/md";
+import { useState } from "react";
+import AudioPlay from "../AudioMessage/AudioPlay";
 
 interface MessageComponent {
   data: IMessages;
@@ -12,6 +14,7 @@ interface MessageComponent {
 
 const MessageComponent = ({ data }: MessageComponent) => {
   const userInfo = useSelector((store: IStore) => store.userInfo);
+  const [modalShow, setModalShow] = useState(false);
 
   return (
     <>
@@ -64,6 +67,9 @@ const MessageComponent = ({ data }: MessageComponent) => {
           className={`  max-w-[60%] w-fit text-lg ${
             userInfo._id == data.sender.id ? "self-end" : "self-start"
           } mx-2 md:mx-4 `}
+          onClick={() => {
+            setModalShow(true);
+          }}
         >
           <div
             className={` ${
@@ -110,6 +116,11 @@ const MessageComponent = ({ data }: MessageComponent) => {
           </p>
         </div>
       )}
+      <AudioPlay
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        fileId={data.fileId}
+      />
     </>
   );
 };
