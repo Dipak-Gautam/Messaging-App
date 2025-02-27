@@ -3,6 +3,7 @@ import { Modal } from "react-bootstrap";
 import { IoMdCloseCircle } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { IStore } from "../../Schema/Store/store.schema";
+import { mainEndPoint } from "../../ApiService/EndPoint/endpoint";
 
 const AudioPlay = ({ ...props }) => {
   const { fileId } = props;
@@ -14,7 +15,7 @@ const AudioPlay = ({ ...props }) => {
 
     const fetchAudio = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/file/${fileId}`, {
+        const response = await fetch(`${mainEndPoint}/file/${fileId}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`, // Attach token here

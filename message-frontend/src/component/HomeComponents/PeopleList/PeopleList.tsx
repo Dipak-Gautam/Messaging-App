@@ -17,8 +17,8 @@ const PeopleList = ({ name, message, active, photo }: PeopleListProp) => {
       }`}
     >
       <div>
-        <div className="bg-pink-500  rounded-full w-10 h-10 flex justify-center items-center">
-          D
+        <div className="bg-pink-500  rounded-full w-10 h-10 flex justify-center items-center text-white font-semibold">
+          {name.slice(0, 1)}
         </div>
       </div>
       <div className="flex-1">
@@ -42,7 +42,7 @@ const PeopleList = ({ name, message, active, photo }: PeopleListProp) => {
       <div className="flex flex-col items-center  gap-1">
         <div className=" text-xs">Today</div>
         <div>
-          <FaChevronDown size={15} className="" />
+          <FaChevronDown size={15} />
         </div>
       </div>
     </div>
