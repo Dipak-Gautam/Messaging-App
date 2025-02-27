@@ -3,14 +3,13 @@ import { Modal } from "react-bootstrap";
 import { IoMdCloseCircle } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { IStore } from "../../Schema/Store/store.schema";
+import { mainEndPoint } from "../../ApiService/EndPoint/endpoint";
 
 const FileDownload = ({ ...props }) => {
   const { fileId } = props;
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const token = useSelector((store: IStore) => store.token);
-
-  const mainEndPoint = "http://localhost:3000"; // Change this to your actual API base URL
 
   const handleDownload = async () => {
     if (!fileId) {
@@ -65,8 +64,6 @@ const FileDownload = ({ ...props }) => {
         <div className="text-white font-bold text-2xl text-center border-b-2 pb-2">
           File Download
         </div>
-
-        {/* Download Button */}
         <button
           onClick={handleDownload}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50"
@@ -74,8 +71,6 @@ const FileDownload = ({ ...props }) => {
         >
           {loading ? "Downloading..." : "Download File"}
         </button>
-
-        {/* Error Message */}
         {error && <div className="text-red-400 text-center">{error}</div>}
       </div>
     </Modal>
