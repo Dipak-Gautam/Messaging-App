@@ -13,7 +13,7 @@ const TopBanner = () => {
             onClick={() => navigate("/")}
           />
         </div>
-        Settings
+        Setting
       </div>
     </div>
   );
