@@ -1,4 +1,3 @@
-import { useState } from "react";
 import ChatsMenu from "../../../component/HomeComponents/SubMenu/ChatsMenu";
 
 const HomeScreen = () => {

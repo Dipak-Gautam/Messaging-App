@@ -1,4 +1,3 @@
-import React from "react";
 import { HiMiniUserCircle } from "react-icons/hi2";
 import { MdOutlineMarkUnreadChatAlt } from "react-icons/md";
 import { IoIosNotificationsOutline } from "react-icons/io";
