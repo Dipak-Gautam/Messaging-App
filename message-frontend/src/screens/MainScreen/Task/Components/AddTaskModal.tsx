@@ -10,6 +10,7 @@ import addTaskApi from "../../../../ApiService/Task/AddTaskApi";
 import { useDispatch, useSelector } from "react-redux";
 import { IStore } from "../../../../Schema/Store/store.schema";
 import { modalAction } from "../../../../store";
+import { IoCloseSharp } from "react-icons/io5";
 
 const AddTaskModal = ({ ...props }) => {
   const token = useSelector((store: IStore) => store.token);
@@ -46,6 +47,9 @@ const AddTaskModal = ({ ...props }) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
+      <div className="absolute top-0 right-2 -translate-y-8 ">
+        <IoCloseSharp size={30} color="white" />
+      </div>
       <div className="  flex flex-col border border-slate-600 bg-dark p-3 rounded-2xl gap-4 px-5 pb-4">
         <div className="text-white font-bold text-center text-2xl">
           Add Task

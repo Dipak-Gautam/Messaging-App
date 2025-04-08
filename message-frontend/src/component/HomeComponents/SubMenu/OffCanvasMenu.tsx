@@ -61,7 +61,7 @@ const OffCanvasMenu = ({ show, setShow }: OffcanvasProp) => {
             </div>
           </div>
 
-          <div className="flex   justify-between gap-4">
+          <div className="flex   justify-between gap-4 items-center">
             <div
               className={`p-2 rounded-full  `}
               onClick={() => {

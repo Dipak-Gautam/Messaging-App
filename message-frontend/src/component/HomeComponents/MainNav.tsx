@@ -59,7 +59,7 @@ const MainNav = () => {
             </div>
           </OverlayTrigger>
         </div>
-        <div className="flex  flex-col items-center gap-4">
+        <div className="flex  flex-col items-center gap-4 ">
           <div
             className={`p-2 rounded-full ${indicator == 3 && "bg-slate-600"} `}
             onClick={() => {
@@ -73,7 +73,7 @@ const MainNav = () => {
           </div>
           <FiLogOut
             className=" text-[#a2a5b1] hover:text-white"
-            size={25}
+            size={23}
             onClick={() => {
               setModalShow(true);
             }}
